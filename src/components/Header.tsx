@@ -11,6 +11,7 @@ interface HeaderProps {
 const Header = ({ language, onLanguageChange }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
+  const [isMobileProjectsDropdownOpen, setIsMobileProjectsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,7 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
       }
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
+        setIsMobileProjectsDropdownOpen(false);
       }
     };
 
@@ -197,23 +199,28 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
                   return (
                     <div key={item.path} className="flex flex-col">
                       <button
-                        onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
-                        className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700 font-medium"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsMobileProjectsDropdownOpen(!isMobileProjectsDropdownOpen);
+                        }}
+                        className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700 font-medium w-full text-left"
                       >
                         <span>{item.label}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isProjectsDropdownOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMobileProjectsDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
-                      {isProjectsDropdownOpen && (
+                      {isMobileProjectsDropdownOpen && (
                         <div className="pl-4 mt-1 space-y-1">
                           {projectOptions[language].map((option) => (
                             <a
                               key={option.path}
                               href={option.path}
-                              onClick={() => {
-                                setIsProjectsDropdownOpen(false);
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setIsMobileProjectsDropdownOpen(false);
                                 setIsMobileMenuOpen(false);
                               }}
-                              className="block px-4 py-2 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-600 text-sm"
+                              className="block px-4 py-2 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-600 text-sm cursor-pointer"
                             >
                               {option.label}
                             </a>
@@ -227,7 +234,10 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
                   <a
                     key={item.path}
                     href={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMobileMenuOpen(false);
+                    }}
                     className="px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700 font-medium"
                   >
                     {item.label}
