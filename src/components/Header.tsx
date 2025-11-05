@@ -88,7 +88,16 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
             <img 
               src={logoMobile} 
               alt="Papatya Vadisi" 
-              className="h-20 md:hidden w-auto object-contain"
+              className="md:hidden object-contain"
+              style={{ 
+                height: '80px',
+                width: 'auto',
+                maxWidth: '200px',
+                transform: 'none',
+                writingMode: 'horizontal-tb',
+                textOrientation: 'mixed',
+                display: 'block'
+              }}
             />
             <img 
               src={logo} 

@@ -68,16 +68,18 @@ const Hero = ({ language }: HeroProps) => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '145px' }}>
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-slate-900">
+      <div className="absolute inset-0 z-0 bg-slate-900 overflow-hidden">
         <img
           src={heroImagePublic}
           alt="Luxury Architecture"
-          className="w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
           loading="eager"
           decoding="sync"
           style={{ 
-            willChange: 'opacity',
+            display: 'block',
+            width: '100%',
+            height: '100%',
             minHeight: '100vh',
             minWidth: '100vw'
           }}
@@ -92,7 +94,7 @@ const Hero = ({ language }: HeroProps) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-luxury text-left text-white -mt-56 md:-mt-64 ml-8 md:ml-12">
+      <div className="relative z-10 container-luxury text-left text-white -mt-32 sm:-mt-40 md:-mt-56 lg:-mt-64 ml-4 sm:ml-6 md:ml-8 lg:ml-12">
         <h1 className="heading-1 mb-8 max-w-4xl italic animate-fade-in-up">
           <div className="block animate-slide-in-left" style={{ animationDelay: '0.1s' }}>{t.title[0]}</div>
           <div className="block animate-slide-in-left" style={{ animationDelay: '0.3s' }}>{t.title[1]}</div>
