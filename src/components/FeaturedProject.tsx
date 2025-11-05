@@ -48,6 +48,8 @@ const FeaturedProject = ({ language }: FeaturedProjectProps) => {
               src={project1}
               alt={t.title}
               className="relative rounded-lg shadow-xl w-full h-[500px] object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute top-6 left-6 bg-accent text-accent-foreground px-4 py-2 rounded-md font-medium text-sm">
               {t.tag}

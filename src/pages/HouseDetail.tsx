@@ -371,7 +371,10 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                     src={allImages[currentImageIndex]}
                     alt={t.title}
                     className="w-full h-full object-contain"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    key={currentImageIndex}
                   />
                   
                   {/* Gradient Overlay */}
