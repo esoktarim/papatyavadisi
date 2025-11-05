@@ -614,64 +614,6 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                 </div>
               </div>
 
-              {/* Contact Card - Only for Tek Katlı Villa */}
-              {!isCiftKatli && (
-                <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-                  <div className="text-center mb-6">
-                    <div className="text-2xl font-light text-gray-900 mb-2" style={{ letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif" }}>
-                      {t.price}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {language === "tr" ? "24 ay %0 faiz fırsatı" : "24 months 0% interest"}
-                    </div>
-                  </div>
-
-                  {/* Contact Buttons */}
-                  <div className="space-y-3">
-                    <a
-                      href="tel:+905366474810"
-                      className="w-full bg-[#C7A664] hover:bg-[#B89654] text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 text-sm"
-                    >
-                      <Phone className="w-4 h-4" />
-                      {language === "tr" ? "Hemen Ara" : "Call Now"}
-                    </a>
-                    <a
-                      href="https://wa.me/905366474810"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 text-sm"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      WhatsApp
-                    </a>
-                    <a
-                      href="mailto:papatyavadisi80@gmail.com"
-                      className="w-full bg-gray-50 hover:bg-gray-100 text-gray-900 font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 text-sm border border-gray-200"
-                    >
-                      <Mail className="w-4 h-4" />
-                      {language === "tr" ? "E-posta Gönder" : "Send Email"}
-                    </a>
-                  </div>
-
-                  {/* Contact Info */}
-                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <Phone className="w-3.5 h-3.5 text-[#C7A664]" />
-                      <a href="tel:+905366474810" className="hover:text-[#C7A664] transition-colors">0536 647 48 10</a>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <Mail className="w-3.5 h-3.5 text-[#C7A664]" />
-                      <a href="mailto:papatyavadisi80@gmail.com" className="hover:text-[#C7A664] truncate transition-colors">
-                        papatyavadisi80@gmail.com
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <MapPin className="w-3.5 h-3.5 text-[#C7A664]" />
-                      <span>{t.location}</span>
-                    </div>
-                  </div>
-                </div>
-              )}
 
             </div>
           </div>
