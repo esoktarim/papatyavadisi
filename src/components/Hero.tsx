@@ -23,10 +23,12 @@ const Hero = ({ language }: HeroProps) => {
     img.fetchPriority = "high";
     
     // Force immediate load - don't wait for component
-    img.loading = "eager";
+    if ('loading' in img) {
+      (img as any).loading = "eager";
+    }
     
     // Ensure image loads before component renders
-    const preloadComplete = img.complete || img.readyState === 4;
+    const preloadComplete = img.complete || img.naturalWidth > 0;
     
     if (!preloadComplete) {
       img.onload = () => {
