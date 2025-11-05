@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Phone, ChevronDown, Home, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
-import logoMobile from "@/assets/logo1.png";
 
 interface HeaderProps {
   language: "tr" | "en";
@@ -86,23 +85,9 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
           {/* Logo */}
           <a href="/" className="flex items-center transition-smooth hover:opacity-80">
             <img 
-              src={logoMobile} 
-              alt="Papatya Vadisi" 
-              className="md:hidden object-contain"
-              style={{ 
-                height: '80px',
-                width: 'auto',
-                maxWidth: '200px',
-                transform: 'none',
-                writingMode: 'horizontal-tb',
-                textOrientation: 'mixed',
-                display: 'block'
-              }}
-            />
-            <img 
               src={logo} 
               alt="Papatya Vadisi" 
-              className="hidden md:block h-28 md:h-32 lg:h-36 xl:h-40 w-auto object-contain"
+              className="h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 w-auto object-contain"
             />
           </a>
 
