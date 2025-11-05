@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import FeaturedProject from "@/components/FeaturedProject";
 import Footer from "@/components/Footer";
 import StickyButtons from "@/components/StickyButtons";
+import heroImage from "@/assets/1.png";
 
 // Lazy load ContactModal
 const ContactModal = lazy(() => import("@/components/ContactModal"));
@@ -18,6 +19,13 @@ interface IndexProps {
 
 const Index = ({ language, onLanguageChange }: IndexProps) => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  // Preload hero image immediately when page loads
+  useEffect(() => {
+    const img = new Image();
+    img.src = heroImage;
+    img.fetchPriority = "high";
+  }, []);
 
   useEffect(() => {
     // Check if modal was shown in last 24-48 hours

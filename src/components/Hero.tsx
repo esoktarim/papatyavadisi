@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/1.png";
@@ -11,6 +11,31 @@ interface HeroProps {
 const Hero = ({ language }: HeroProps) => {
   const [callBackOpen, setCallBackOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Preload hero image immediately
+  useEffect(() => {
+    // Preload the image
+    const img = new Image();
+    img.src = heroImage;
+    img.fetchPriority = "high";
+
+    // Also add preload link
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = heroImage;
+    if (link.setAttribute) {
+      link.setAttribute("fetchpriority", "high");
+    }
+    document.head.appendChild(link);
+
+    return () => {
+      const existingLink = document.querySelector(`link[href="${heroImage}"]`);
+      if (existingLink) {
+        document.head.removeChild(existingLink);
+      }
+    };
+  }, []);
 
   const content = {
     tr: {
@@ -39,6 +64,9 @@ const Hero = ({ language }: HeroProps) => {
           src={heroImage}
           alt="Luxury Architecture"
           className="w-full h-full object-cover object-center"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
         />
       </div>
 
