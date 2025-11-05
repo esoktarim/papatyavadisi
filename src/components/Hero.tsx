@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/1.png";
 import CallBackModal from "@/components/CallBackModal";
 
+// Use public path for instant loading (bypasses Vite bundling)
+const heroImagePublic = "/hero-image.png";
+
 interface HeroProps {
   language: "tr" | "en";
 }
@@ -12,29 +15,33 @@ const Hero = ({ language }: HeroProps) => {
   const [callBackOpen, setCallBackOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Preload hero image immediately
+  // Preload hero image immediately - Critical for instant display
   useEffect(() => {
-    // Preload the image
+    // Use public path for faster loading (bypasses Vite bundling)
     const img = new Image();
-    img.src = heroImage;
+    img.src = heroImagePublic;
     img.fetchPriority = "high";
-
-    // Also add preload link
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = heroImage;
-    if (link.setAttribute) {
-      link.setAttribute("fetchpriority", "high");
+    
+    // Force immediate load - don't wait for component
+    img.loading = "eager";
+    
+    // Ensure image loads before component renders
+    const preloadComplete = img.complete || img.readyState === 4;
+    
+    if (!preloadComplete) {
+      img.onload = () => {
+        // Image is ready
+        console.log('Hero image preloaded successfully');
+      };
+      
+      img.onerror = () => {
+        // Fallback to bundled image if public fails
+        console.warn('Public hero image failed, using bundled version');
+        const fallbackImg = new Image();
+        fallbackImg.src = heroImage;
+        fallbackImg.fetchPriority = "high";
+      };
     }
-    document.head.appendChild(link);
-
-    return () => {
-      const existingLink = document.querySelector(`link[href="${heroImage}"]`);
-      if (existingLink) {
-        document.head.removeChild(existingLink);
-      }
-    };
   }, []);
 
   const content = {
@@ -59,14 +66,26 @@ const Hero = ({ language }: HeroProps) => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '145px' }}>
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-slate-900">
         <img
-          src={heroImage}
+          src={heroImagePublic}
           alt="Luxury Architecture"
           className="w-full h-full object-cover object-center"
           fetchPriority="high"
           loading="eager"
-          decoding="async"
+          decoding="sync"
+          style={{ 
+            willChange: 'opacity',
+            minHeight: '100vh',
+            minWidth: '100vw'
+          }}
+          onError={(e) => {
+            // Fallback to bundled image if public fails
+            const target = e.target as HTMLImageElement;
+            if (target.src !== heroImage) {
+              target.src = heroImage;
+            }
+          }}
         />
       </div>
 
