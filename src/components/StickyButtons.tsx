@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Building2, X } from "lucide-react";
+import { Building2, X, Share2 } from "lucide-react";
 
 interface StickyButtonsProps {
   language: "tr" | "en";
@@ -72,31 +72,23 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
         {/* Ana Sosyal Medya Toggle Button */}
         <button
           onClick={() => setSocialOpen(!socialOpen)}
-          className={`group relative rounded-full w-14 h-14 md:w-16 md:h-16 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
-            socialOpen ? "bg-gray-800 rotate-45" : "bg-black hover:bg-gray-900"
+          className={`group relative rounded-full w-14 h-14 md:w-16 md:h-16 shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center overflow-hidden ${
+            socialOpen 
+              ? "bg-gradient-to-br from-gray-700 to-gray-900 rotate-45" 
+              : "bg-gradient-to-br from-[#C7A664] via-[#B89654] to-[#A88544] hover:from-[#D4B674] hover:via-[#C7A664] hover:to-[#B89654]"
           }`}
           aria-label={t.socialMedia}
         >
           {socialOpen ? (
-            <X className="w-6 h-6 md:w-7 md:h-7 text-white transition-transform" />
+            <X className="w-6 h-6 md:w-7 md:h-7 text-white transition-transform z-10" strokeWidth="2.5" />
           ) : (
-            <div className="relative">
-              {/* Call Center Headset Icon - Clear and recognizable */}
-              <svg className="w-8 h-8 md:w-9 md:h-9 text-[#C7A664] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                {/* Headband arc */}
-                <path d="M4 12a8 8 0 0 1 16 0" />
-                {/* Left earcup */}
-                <path d="M4 12v5a2 2 0 0 0 2 2h2" />
-                <circle cx="7" cy="17" r="2.5" fill="currentColor" />
-                {/* Right earcup */}
-                <path d="M20 12v5a2 2 0 0 1-2 2h-2" />
-                <circle cx="17" cy="17" r="2.5" fill="currentColor" />
-                {/* Microphone boom */}
-                <line x1="1" y1="15" x2="4" y2="15" strokeWidth="3" />
-                <circle cx="0.5" cy="15" r="2" fill="currentColor" />
-              </svg>
-              {/* Notification Badge - red dot */}
-              <div className="absolute -top-0.5 -right-0.5 bg-red-500 rounded-full w-4 h-4 md:w-5 md:h-5 border-2 border-black shadow-md z-10"></div>
+            <div className="relative flex items-center justify-center">
+              {/* Share/Social Media Icon */}
+              <Share2 className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform z-10" strokeWidth="2.5" />
+              {/* Decorative gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+              {/* Shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-full"></div>
             </div>
           )}
         </button>
