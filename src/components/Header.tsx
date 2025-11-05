@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Phone, ChevronDown, Home } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 interface HeaderProps {
@@ -11,8 +10,9 @@ interface HeaderProps {
 
 const Header = ({ language, onLanguageChange }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const location = useLocation();
-  const isProjectsPage = location.pathname === "/projeler";
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -24,23 +24,52 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsProjectsDropdownOpen(false);
+      }
+    };
+
+    if (isProjectsDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProjectsDropdownOpen]);
+
   const menuItems = {
     tr: [
-      { label: "Kurumsal", path: "/kurumsal" },
-      { label: "Projeler", path: "/projeler" },
-      { label: "Lokasyonlar", path: "/lokasyonlar" },
-      { label: "İletişim", path: "/iletisim" },
+      { label: "Kurumsal", path: "/kurumsal", hasDropdown: false },
+      { label: "Projeler", path: "/projeler", hasDropdown: true },
+      { label: "Lokasyonlar", path: "/lokasyonlar", hasDropdown: false },
+      { label: "İletişim", path: "/iletisim", hasDropdown: false },
     ],
     en: [
-      { label: "Corporate", path: "/kurumsal" },
-      { label: "Projects", path: "/projeler" },
-      { label: "Locations", path: "/lokasyonlar" },
-      { label: "Contact", path: "/iletisim" },
+      { label: "Corporate", path: "/kurumsal", hasDropdown: false },
+      { label: "Projects", path: "/projeler", hasDropdown: true },
+      { label: "Locations", path: "/lokasyonlar", hasDropdown: false },
+      { label: "Contact", path: "/iletisim", hasDropdown: false },
+    ],
+  };
+
+  const projectOptions = {
+    tr: [
+      { label: "Tek Katlı Villa", path: "/ev/tek-katli-villa" },
+      { label: "Çift Katlı Villa", path: "/ev/cift-katli-villa" },
+    ],
+    en: [
+      { label: "Single-Story Villa", path: "/ev/tek-katli-villa" },
+      { label: "Two-Story Villa", path: "/ev/cift-katli-villa" },
     ],
   };
 
   // Header always has light background as per design
   const headerBg = "bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm";
+  const isHomePage = location.pathname === "/";
 
   return (
     <header
@@ -59,15 +88,57 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
 
           {/* Navigation Menu */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {menuItems[language].map((item) => (
+            {/* Home Icon - Only show on non-home pages */}
+            {!isHomePage && (
               <a
-                key={item.path}
-                href={item.path}
-                className="text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
+                href="/"
+                className="group relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 hover:border-[#C7A664] text-slate-600 hover:text-[#C7A664] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#C7A664]/20"
+                aria-label={language === "tr" ? "Ana Sayfa" : "Home"}
+                title={language === "tr" ? "Ana Sayfa" : "Home"}
               >
-                {item.label}
+                <Home className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#C7A664]/0 to-[#C7A664]/0 group-hover:from-[#C7A664]/10 group-hover:to-transparent transition-all duration-300 pointer-events-none"></div>
               </a>
-            ))}
+            )}
+            {menuItems[language].map((item) => {
+              if (item.hasDropdown) {
+                return (
+                  <div key={item.path} className="relative" ref={dropdownRef}>
+                    <button
+                      onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
+                      className="flex items-center gap-1 text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
+                    >
+                      {item.label}
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isProjectsDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isProjectsDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                        {projectOptions[language].map((option) => (
+                          <a
+                            key={option.path}
+                            href={option.path}
+                            onClick={() => setIsProjectsDropdownOpen(false)}
+                            className="block px-4 py-2 text-sm text-slate-700 hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors"
+                          >
+                            {option.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  className="text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Side: Language + Phone */}

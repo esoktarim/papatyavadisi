@@ -40,9 +40,8 @@ const LeadForm = ({ language }: LeadFormProps) => {
       errorTitle: "Hata!",
       errorMessage: "Bir hata oluştu. Lütfen tekrar deneyin.",
       projects: [
-        "Papatya Vadisi - Faz 1",
-        "Papatya Vadisi - Faz 2",
-        "Papatya Vadisi - Örnek Konutlar",
+        "Tek Katlı Villa",
+        "Çift Katlı Villa",
       ],
     },
     en: {
@@ -61,9 +60,8 @@ const LeadForm = ({ language }: LeadFormProps) => {
       errorTitle: "Error!",
       errorMessage: "An error occurred. Please try again.",
       projects: [
-        "Papatya Vadisi - Phase 1",
-        "Papatya Vadisi - Phase 2",
-        "Papatya Vadisi - Model Homes",
+        "Single Story Villa",
+        "Double Story Villa",
       ],
     },
   };

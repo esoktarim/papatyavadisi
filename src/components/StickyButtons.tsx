@@ -159,8 +159,13 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
         )}
 
         {/* Satıştaki Projeler Button */}
-        <a
-          href="/projeler"
+        <button
+          onClick={() => {
+            const projectsSection = document.getElementById('satistaki-projeler');
+            if (projectsSection) {
+              projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
           className="group relative bg-[#1e3a5f] hover:bg-[#1a3252] text-white rounded-l-lg px-4 py-6 md:px-5 md:py-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center gap-3 min-w-[60px] md:min-w-[70px]"
           aria-label={t.projects}
         >
@@ -168,7 +173,7 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
           <span className="writing-vertical text-xs md:text-sm font-semibold whitespace-nowrap">
             {t.projects}
           </span>
-        </a>
+        </button>
       </div>
     </>
   );

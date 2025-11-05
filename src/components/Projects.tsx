@@ -13,8 +13,9 @@ const Projects = ({ language }: ProjectsProps) => {
       subtitle: "Doğanın içinde modern villa yaşamı",
       projects: [
         {
+          id: "cift-katli-villa",
           title: "Çift Katlı Villa",
-          location: "Osmaniye Merkez",
+          location: "Kadirli",
           features: [
             "3+1",
             "144 m²",
@@ -23,8 +24,9 @@ const Projects = ({ language }: ProjectsProps) => {
           ],
         },
         {
+          id: "tek-katli-villa",
           title: "Tek Katlı Villa",
-          location: "Osmaniye Merkez",
+          location: "Kadirli",
           features: [
             "3+1",
             "144 m²",
@@ -39,8 +41,9 @@ const Projects = ({ language }: ProjectsProps) => {
       subtitle: "Modern villa life surrounded by nature",
       projects: [
         {
+          id: "cift-katli-villa",
           title: "Two-Story Villa",
-          location: "Osmaniye Center",
+          location: "Kadirli",
           features: [
             "3+1",
             "144 m²",
@@ -49,8 +52,9 @@ const Projects = ({ language }: ProjectsProps) => {
           ],
         },
         {
+          id: "tek-katli-villa",
           title: "Single-Story Villa",
-          location: "Osmaniye Center",
+          location: "Kadirli",
           features: [
             "3+1",
             "144 m²",
@@ -66,7 +70,7 @@ const Projects = ({ language }: ProjectsProps) => {
   const images = [project1, project2];
 
   return (
-    <section className="section-padding bg-background">
+    <section id="satistaki-projeler" className="section-padding bg-background">
       <div className="container-luxury">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-up">
@@ -87,6 +91,7 @@ const Projects = ({ language }: ProjectsProps) => {
                 title={project.title}
                 location={project.location}
                 features={project.features}
+                id={project.id}
                 language={language}
               />
             </div>

@@ -1,4 +1,5 @@
 import { MapPin, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -7,10 +8,11 @@ interface ProjectCardProps {
   title: string;
   location: string;
   features: string[];
+  id: string;
   language: "tr" | "en";
 }
 
-const ProjectCard = ({ image, title, location, features, language }: ProjectCardProps) => {
+const ProjectCard = ({ image, title, location, features, id, language }: ProjectCardProps) => {
   const content = {
     tr: { explore: "Keşfet" },
     en: { explore: "Explore" },
@@ -24,6 +26,7 @@ const ProjectCard = ({ image, title, location, features, language }: ProjectCard
           src={image}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          loading="lazy"
         />
         
         {/* Dark Overlay on Hover */}
@@ -51,13 +54,15 @@ const ProjectCard = ({ image, title, location, features, language }: ProjectCard
         </ul>
 
         {/* CTA */}
-        <Button 
-          variant="outline" 
-          className="w-full group/btn justify-between border-[#C7A664] text-[#C7A664] hover:bg-[#C7A664] hover:text-white transition-all mt-auto"
-        >
-          <span>{content[language].explore}</span>
-          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-        </Button>
+        <Link to={`/ev/${id}`} className="mt-auto">
+          <Button 
+            variant="outline" 
+            className="w-full group/btn justify-between border-[#C7A664] text-[#C7A664] hover:bg-[#C7A664] hover:text-white transition-all"
+          >
+            <span>{content[language].explore}</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+          </Button>
+        </Link>
       </div>
     </Card>
   );

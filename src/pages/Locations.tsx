@@ -16,8 +16,8 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
       subtitle: "Stratejik konumda, doğanın kalbinde",
       mainLocation: {
         title: "Papatya Vadisi Konumu",
-        description: "Osmaniye'nin Bağdaş Yaylası'nda, doğa ile şehrin buluştuğu noktada yer alan villa konut projesi.",
-        address: "Bağdaş Yaylası, Osmaniye",
+        description: "Kadirli'nin Bağdaş Yaylası'nda, doğa ile şehrin buluştuğu noktada yer alan villa konut projesi.",
+        address: "Bağdaş Yaylası, Kadirli",
       },
       distances: [
         {
@@ -122,13 +122,7 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
           
           {/* Content */}
           <div className="relative z-10 container-luxury text-center px-4">
-            <div className="inline-block mb-6 animate-fade-up">
-              <span className="inline-flex items-center gap-2 bg-[#C7A664]/90 backdrop-blur-sm text-white px-6 py-2 rounded-full font-semibold text-sm shadow-lg">
-                <MapPin className="w-4 h-4" />
-                {language === "tr" ? "Konum" : "Location"}
-              </span>
-            </div>
-            <h1 className="heading-1 mb-6 text-white animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <h1 className="heading-1 mb-6 text-white animate-fade-up">
               {t.title}
             </h1>
             <p className="text-xl md:text-2xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
@@ -175,9 +169,9 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
               </div>
 
               {/* Google Maps */}
-              <div className="rounded-2xl overflow-hidden border-2 border-accent shadow-xl animate-fade-up h-full" style={{ animationDelay: "150ms" }}>
+              <div className="relative rounded-2xl overflow-hidden border-2 border-accent shadow-xl animate-fade-up h-full" style={{ animationDelay: "150ms" }}>
                 <iframe
-                  src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.5!2d36.1678!3d37.6758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQwJzMzLjAiTiAzNsKwMTAnMDQuMSJF!5e0!3m2!1str!2str!4v${Date.now()}`}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.5!2d36.16997!3d37.674205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQwJzI3LjEiTiAzNsKwMTAnMTEuOSJF!5e0!3m2!1str!2str!4v1697123456789"
                   width="100%"
                   height="100%"
                   style={{ minHeight: "400px", border: 0 }}
@@ -187,6 +181,18 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
                   title="Papatya Vadisi Location"
                   className="w-full h-full"
                 />
+                {/* Direct Link Button */}
+                <div className="absolute bottom-4 right-4 z-10">
+                  <a
+                    href="https://maps.app.goo.gl/uZmNCA5f7TBzdN7LA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white hover:bg-[#C7A664] text-[#C7A664] hover:text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transition-all duration-300 border border-[#C7A664]"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    {language === "tr" ? "Haritada Görüntüle" : "View on Maps"}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

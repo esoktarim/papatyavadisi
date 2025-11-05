@@ -9,6 +9,10 @@ import Locations from "./pages/Locations";
 import ECatalog from "./pages/ECatalog";
 import SalesOffice from "./pages/SalesOffice";
 import Corporate from "./pages/Corporate";
+import HouseDetail from "./pages/HouseDetail";
+import Contact from "./pages/Contact";
+import KVKK from "./pages/KVKK";
+import CerezPolitikasi from "./pages/CerezPolitikasi";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
@@ -57,6 +61,22 @@ export default function App() {
         <Route
           path="/kurumsal"
           element={<Corporate language={language} onLanguageChange={handleLanguageChange} />}
+        />
+        <Route
+          path="/iletisim"
+          element={<Contact language={language} onLanguageChange={handleLanguageChange} />}
+        />
+        <Route
+          path="/ev/:id"
+          element={<HouseDetail language={language} onLanguageChange={handleLanguageChange} />}
+        />
+        <Route
+          path="/kvkk"
+          element={<KVKK language={language} onLanguageChange={handleLanguageChange} />}
+        />
+        <Route
+          path="/cerez-politikasi"
+          element={<CerezPolitikasi language={language} onLanguageChange={handleLanguageChange} />}
         />
         <Route
           path="*"

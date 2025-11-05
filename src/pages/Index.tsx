@@ -5,8 +5,6 @@ import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import Projects from "@/components/Projects";
 import FeaturedProject from "@/components/FeaturedProject";
-import TrustStats from "@/components/TrustStats";
-import LeadForm from "@/components/LeadForm";
 import Footer from "@/components/Footer";
 import StickyButtons from "@/components/StickyButtons";
 
@@ -82,8 +80,6 @@ const Index = ({ language, onLanguageChange }: IndexProps) => {
       <AboutSection language={language} />
       <Projects language={language} />
       <FeaturedProject language={language} />
-      <TrustStats language={language} />
-      <LeadForm language={language} />
       <Footer language={language} />
       
       {/* Sticky Buttons */}
@@ -91,9 +87,9 @@ const Index = ({ language, onLanguageChange }: IndexProps) => {
       
       <Suspense fallback={null}>
         {modalOpen && (
-          <ContactModal
-            language={language}
-            open={modalOpen}
+      <ContactModal
+        language={language}
+        open={modalOpen}
             onOpenChange={(open) => {
               setModalOpen(open);
               if (!open) {
@@ -103,7 +99,7 @@ const Index = ({ language, onLanguageChange }: IndexProps) => {
                 }));
               }
             }}
-          />
+      />
         )}
       </Suspense>
     </div>

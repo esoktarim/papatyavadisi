@@ -25,8 +25,15 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Email transporter configuration
-const createTransporter = () => {
+// Email transporter configuration - cached for better performance
+let cachedTransporter = null;
+
+const createTransporter = async () => {
+  // Return cached transporter if available
+  if (cachedTransporter) {
+    return cachedTransporter;
+  }
+
   const emailUser = process.env.EMAIL_USER || "papatyavadisi80@gmail.com";
   const emailPass = process.env.EMAIL_PASS;
 
@@ -54,23 +61,24 @@ const createTransporter = () => {
     }
   });
 
-  // Verify connection
-  transporter.verify((error) => {
-    if (error) {
-      console.error("❌ Email transporter verification failed:", error.message);
-      if (error.message.includes("Invalid login") || error.message.includes("535")) {
-        console.error("💡 Authentication Error - Please check:");
-        console.error("   1. EMAIL_PASS must be a Gmail App Password (not your regular password)");
-        console.error("   2. Enable 2-Step Verification on your Google account");
-        console.error("   3. Generate a new App Password at: https://myaccount.google.com/apppasswords");
-        console.error("   4. Copy the 16-character password (without spaces) to .env file");
-      }
-    } else {
-      console.log("✅ Email transporter verified successfully");
+  // Verify connection - wait for verification
+  try {
+    await transporter.verify();
+    console.log("✅ Email transporter verified successfully");
+    cachedTransporter = transporter;
+    return transporter;
+  } catch (error) {
+    console.error("❌ Email transporter verification failed:", error.message);
+    if (error.message.includes("Invalid login") || error.message.includes("535")) {
+      console.error("💡 Authentication Error - Please check:");
+      console.error("   1. EMAIL_PASS must be a Gmail App Password (not your regular password)");
+      console.error("   2. Enable 2-Step Verification on your Google account");
+      console.error("   3. Generate a new App Password at: https://myaccount.google.com/apppasswords");
+      console.error("   4. Copy the 16-character password (without spaces) to .env file");
     }
-  });
-
-  return transporter;
+    // Return null if verification fails, but don't cache
+    return null;
+  }
 };
 
 // Helper function to get logo as base64
@@ -105,24 +113,17 @@ const createAdminEmailTemplate = (data, language = "tr") => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: 0; padding: 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; background-color: #f5f5f5;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 15px;">
         <tr>
           <td align="center">
             <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
               <!-- Header -->
               <tr>
-                <td style="background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); padding: 30px; text-align: center;">
-                  <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px;">
-                    ${logoBase64 ? `
-                      <img src="${logoBase64}" alt="Papatya Vadisi Logo" style="height: 40px; width: auto; display: block;" />
-                    ` : `
-                      <span style="font-size: 28px;">🏡</span>
-                    `}
-                    <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">
-                      Papatya Vadisi
-                    </h1>
-                  </div>
-                  <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 16px; opacity: 0.95;">
+                <td style="background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); padding: 25px; text-align: center;">
+                  <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">
+                    🏡 Papatya Vadisi
+                  </h1>
+                  <p style="margin: 8px 0 0 0; color: #ffffff; font-size: 14px; opacity: 0.95;">
                     ${language === "tr" ? "Yeni İletişim Formu" : "New Contact Form"}
                   </p>
                 </td>
@@ -130,69 +131,77 @@ const createAdminEmailTemplate = (data, language = "tr") => {
               
               <!-- Content -->
               <tr>
-                <td style="padding: 30px;">
-                  <div style="background-color: #fafafa; padding: 30px; border-radius: 0; border-left: 5px solid #C7A664;">
-                    <h2 style="margin: 0 0 25px 0; color: #333333; font-size: 22px; font-weight: bold;">
-                      ${language === "tr" ? "Form Bilgileri" : "Form Information"}
-                    </h2>
-                    
+                <td style="padding: 25px;">
+                  <h2 style="margin: 0 0 20px 0; color: #333333; font-size: 18px; font-weight: bold; border-bottom: 2px solid #C7A664; padding-bottom: 10px;">
+                    ${language === "tr" ? "Form Bilgileri" : "Form Information"}
+                  </h2>
+                  
+                  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
                     ${project ? `
-                      <div style="margin-bottom: 20px;">
-                        <strong style="color: #C7A664; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px; font-weight: bold;">
+                    <tr>
+                      <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #C7A664; font-size: 12px; text-transform: uppercase; display: inline-block; min-width: 80px;">
                           ${language === "tr" ? "PROJE" : "PROJECT"}:
                         </strong>
-                        <span style="color: #333333; font-size: 16px; display: block;">${project}</span>
-                      </div>
+                        <span style="color: #333333; font-size: 14px;">${project}</span>
+                      </td>
+                    </tr>
                     ` : ""}
                     
                     ${name ? `
-                      <div style="margin-bottom: 20px;">
-                        <strong style="color: #C7A664; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px; font-weight: bold;">
+                    <tr>
+                      <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #C7A664; font-size: 12px; text-transform: uppercase; display: inline-block; min-width: 80px;">
                           ${language === "tr" ? "İSİM" : "NAME"}:
                         </strong>
-                        <span style="color: #333333; font-size: 16px; display: block;">${name}</span>
-                      </div>
+                        <span style="color: #333333; font-size: 14px;">${name}</span>
+                      </td>
+                    </tr>
                     ` : ""}
                     
                     ${phone ? `
-                      <div style="margin-bottom: 20px;">
-                        <strong style="color: #C7A664; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px; font-weight: bold;">
+                    <tr>
+                      <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #C7A664; font-size: 12px; text-transform: uppercase; display: inline-block; min-width: 80px;">
                           ${language === "tr" ? "TELEFON" : "PHONE"}:
                         </strong>
-                        <a href="tel:${phone.replace(/\s/g, '')}" style="color: #333333; text-decoration: none; font-size: 16px; display: block;">
+                        <a href="tel:${phone.replace(/\s/g, '')}" style="color: #333333; text-decoration: none; font-size: 14px;">
                           ${phone}
                         </a>
-                      </div>
+                      </td>
+                    </tr>
                     ` : ""}
                     
                     ${email ? `
-                      <div style="margin-bottom: 20px;">
-                        <strong style="color: #C7A664; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px; font-weight: bold;">
+                    <tr>
+                      <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #C7A664; font-size: 12px; text-transform: uppercase; display: inline-block; min-width: 80px;">
                           ${language === "tr" ? "E-POSTA" : "EMAIL"}:
                         </strong>
-                        <a href="mailto:${email}" style="color: #333333; text-decoration: none; font-size: 16px; display: block;">
+                        <a href="mailto:${email}" style="color: #333333; text-decoration: none; font-size: 14px;">
                           ${email}
                         </a>
-                      </div>
+                      </td>
+                    </tr>
                     ` : ""}
                     
                     ${message ? `
-                      <div style="margin-top: 20px;">
-                        <strong style="color: #C7A664; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 10px; font-weight: bold;">
+                    <tr>
+                      <td style="padding: 12px 0;">
+                        <strong style="color: #C7A664; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 8px;">
                           ${language === "tr" ? "MESAJ" : "MESSAGE"}:
                         </strong>
-                        <div style="color: #333333; font-size: 16px; line-height: 1.6; background-color: #ffffff; padding: 15px; border: 1px solid #e0e0e0; border-radius: 4px; min-height: 60px;">
+                        <div style="color: #333333; font-size: 14px; line-height: 1.5; background-color: #fafafa; padding: 12px; border-left: 3px solid #C7A664; border-radius: 4px;">
                           ${message.replace(/\n/g, "<br>")}
                         </div>
-                      </div>
+                      </td>
+                    </tr>
                     ` : ""}
-                  </div>
+                  </table>
                   
-                  <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #999999; font-size: 12px;">
-                    <p style="margin: 5px 0;">
-                      <strong>${language === "tr" ? "Dil" : "Language"}:</strong> ${language === "tr" ? "Türkçe" : "English"}
-                    </p>
-                    <p style="margin: 5px 0;">
+                  <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0; color: #999999; font-size: 11px;">
+                    <p style="margin: 3px 0;">
+                      <strong>${language === "tr" ? "Dil" : "Language"}:</strong> ${language === "tr" ? "Türkçe" : "English"} | 
                       <strong>${language === "tr" ? "Tarih" : "Date"}:</strong> ${date}
                     </p>
                   </div>
@@ -201,14 +210,14 @@ const createAdminEmailTemplate = (data, language = "tr") => {
               
               <!-- Footer -->
               <tr>
-                <td style="background-color: #f9f9f9; padding: 20px; text-align: center; border-top: 2px solid #C7A664;">
-                  <p style="margin: 0; color: #666666; font-size: 12px;">
+                <td style="background-color: #f9f9f9; padding: 15px; text-align: center; border-top: 2px solid #C7A664;">
+                  <p style="margin: 0; color: #666666; font-size: 11px;">
                     ${language === "tr" 
                       ? "Bu email Papatya Vadisi web sitesinden otomatik olarak gönderilmiştir." 
                       : "This email was automatically sent from the Papatya Vadisi website."}
                   </p>
-                  <p style="margin: 10px 0 0 0; color: #999999; font-size: 11px;">
-                    Osmaniye Merkez, Osmaniye
+                  <p style="margin: 5px 0 0 0; color: #999999; font-size: 10px;">
+                    Kadirli, Osmaniye
                   </p>
                 </td>
               </tr>
@@ -223,7 +232,6 @@ const createAdminEmailTemplate = (data, language = "tr") => {
 
 const createThankYouEmailTemplate = (data, language = "tr") => {
   const { name, project } = data;
-  const logoBase64 = getLogoBase64();
   
   return `
     <!DOCTYPE html>
@@ -232,45 +240,38 @@ const createThankYouEmailTemplate = (data, language = "tr") => {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px;">
+    <body style="margin: 0; padding: 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; background-color: #f5f5f5;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 15px;">
         <tr>
           <td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
               <!-- Header -->
               <tr>
-                <td style="background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); padding: 50px 30px; text-align: center;">
-                  <div style="background-color: rgba(255,255,255,0.15); border-radius: 50%; width: 80px; height: 80px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
-                    ${logoBase64 ? `
-                      <img src="${logoBase64}" alt="Papatya Vadisi Logo" style="height: 60px; width: auto; display: block;" />
-                    ` : `
-                      <span style="font-size: 40px;">🏡</span>
-                    `}
-                  </div>
-                  <h1 style="margin: 0; color: #ffffff; font-size: 36px; font-weight: bold; letter-spacing: 1px;">
-                    Papatyavadisi
+                <td style="background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); padding: 30px; text-align: center;">
+                  <h1 style="margin: 0 0 10px 0; color: #ffffff; font-size: 28px; font-weight: bold;">
+                    🏡 Papatya Vadisi
                   </h1>
-                  <p style="margin: 15px 0 0 0; color: #ffffff; font-size: 18px; opacity: 0.95; font-weight: 300;">
-                    ${language === "tr" ? "Mesajınız Tarafımıza Ulaşmıştır" : "Your Message Has Been Received"}
+                  <p style="margin: 0; color: #ffffff; font-size: 16px; opacity: 0.95;">
+                    ${language === "tr" ? "Mesajınız İletildi!" : "Your Message Has Been Received!"}
                   </p>
                 </td>
               </tr>
               
               <!-- Content -->
               <tr>
-                <td style="padding: 50px 40px;">
-                  <h2 style="margin: 0 0 25px 0; color: #333333; font-size: 28px; font-weight: 600;">
+                <td style="padding: 30px;">
+                  <h2 style="margin: 0 0 20px 0; color: #333333; font-size: 20px; font-weight: bold;">
                     ${name ? `${language === "tr" ? "Sayın" : "Dear"} ${name},` : (language === "tr" ? "Sayın Müşterimiz," : "Dear Customer,")}
                   </h2>
                   
-                  <div style="background-color: #f9f9f9; padding: 25px; border-radius: 8px; border-left: 4px solid #C7A664; margin-bottom: 30px;">
-                    <p style="margin: 0 0 15px 0; color: #333333; font-size: 17px; line-height: 1.8; font-weight: 400;">
+                  <div style="background-color: #fafafa; padding: 20px; border-radius: 8px; border-left: 4px solid #C7A664; margin-bottom: 25px;">
+                    <p style="margin: 0 0 12px 0; color: #333333; font-size: 15px; line-height: 1.6;">
                       ${language === "tr" 
                         ? "Papatya Vadisi iletişim formunuz tarafımıza başarıyla ulaşmıştır. Talebiniz en kısa sürede değerlendirilecek ve sizinle iletişime geçilecektir." 
                         : "Your contact form for Papatya Vadisi has been successfully received. Your request will be evaluated as soon as possible and we will contact you."}
                     </p>
                     
-                    <p style="margin: 15px 0 0 0; color: #555555; font-size: 16px; line-height: 1.7;">
+                    <p style="margin: 12px 0 0 0; color: #555555; font-size: 14px; line-height: 1.5;">
                       ${language === "tr" 
                         ? "Bize güvendiğiniz için teşekkür ederiz. Size en iyi hizmeti sunmak için buradayız." 
                         : "Thank you for your trust. We are here to provide you with the best service."}
@@ -278,82 +279,54 @@ const createThankYouEmailTemplate = (data, language = "tr") => {
                   </div>
                   
                   ${project ? `
-                    <div style="background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%); padding: 25px; border-radius: 10px; border: 2px solid #C7A664; margin: 25px 0; text-align: center;">
-                      <p style="margin: 0 0 12px 0; color: #C7A664; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; border: 2px solid #C7A664; margin-bottom: 25px; text-align: center;">
+                      <p style="margin: 0 0 8px 0; color: #C7A664; font-weight: bold; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
                         ${language === "tr" ? "İlgilendiğiniz Proje" : "Your Selected Project"}
                       </p>
-                      <p style="margin: 0; color: #333333; font-size: 22px; font-weight: 600;">
+                      <p style="margin: 0; color: #333333; font-size: 18px; font-weight: 600;">
                         ${project}
                       </p>
                     </div>
                   ` : ""}
                   
-                  <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e8e8e8;">
-                    <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; font-weight: 600;">
-                      ${language === "tr" 
-                        ? "Bize Ulaşın" 
-                        : "Contact Us"}
+                  <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid #e8e8e8;">
+                    <p style="margin: 0 0 15px 0; color: #333333; font-size: 15px; font-weight: bold;">
+                      ${language === "tr" ? "Bize Ulaşın" : "Contact Us"}
                     </p>
                     
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td style="padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
-                          <table cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="width: 30px; vertical-align: middle;">
-                                <span style="font-size: 20px;">📞</span>
-                              </td>
-                              <td style="vertical-align: middle;">
-                                <a href="tel:+905423982666" style="color: #C7A664; text-decoration: none; font-size: 15px; font-weight: 500;">
-                                  0542 398 26 66
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
+                        <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                          <span style="font-size: 16px; margin-right: 10px;">📞</span>
+                          <a href="tel:+905423982666" style="color: #C7A664; text-decoration: none; font-size: 14px;">
+                            0542 398 26 66
+                          </a>
                         </td>
                       </tr>
                       <tr>
-                        <td style="padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
-                          <table cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="width: 30px; vertical-align: middle;">
-                                <span style="font-size: 20px;">📧</span>
-                              </td>
-                              <td style="vertical-align: middle;">
-                                <a href="mailto:papatyavadisi80@gmail.com" style="color: #C7A664; text-decoration: none; font-size: 15px; font-weight: 500;">
-                                  papatyavadisi80@gmail.com
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
+                        <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                          <span style="font-size: 16px; margin-right: 10px;">📧</span>
+                          <a href="mailto:papatyavadisi80@gmail.com" style="color: #C7A664; text-decoration: none; font-size: 14px;">
+                            papatyavadisi80@gmail.com
+                          </a>
                         </td>
                       </tr>
                       <tr>
-                        <td style="padding: 12px 0;">
-                          <table cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td style="width: 30px; vertical-align: middle;">
-                                <span style="font-size: 20px;">📍</span>
-                              </td>
-                              <td style="vertical-align: middle;">
-                                <span style="color: #666666; font-size: 15px;">
-                                  Osmaniye Merkez, Osmaniye
-                                </span>
-                              </td>
-                            </tr>
-                          </table>
+                        <td style="padding: 8px 0;">
+                          <span style="font-size: 16px; margin-right: 10px;">📍</span>
+                          <span style="color: #666666; font-size: 14px;">
+                            Kadirli, Osmaniye
+                          </span>
                         </td>
                       </tr>
                     </table>
                   </div>
                   
-                  <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); border-radius: 10px; text-align: center;">
-                    <p style="margin: 0; color: #ffffff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;">
-                      ${language === "tr" 
-                        ? "Teşekkür Ederiz" 
-                        : "Thank You"}
+                  <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #C7A664 0%, #B89654 100%); border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 600;">
+                      ${language === "tr" ? "Teşekkür Ederiz" : "Thank You"}
                     </p>
-                    <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 14px; opacity: 0.9;">
+                    <p style="margin: 8px 0 0 0; color: #ffffff; font-size: 13px; opacity: 0.9;">
                       Papatya Vadisi Ekibi
                     </p>
                   </div>
@@ -362,20 +335,20 @@ const createThankYouEmailTemplate = (data, language = "tr") => {
               
               <!-- Footer -->
               <tr>
-                <td style="background-color: #2c2c2c; padding: 30px; text-align: center;">
-                  <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 13px; font-weight: 500;">
-                    Papatyavadisi
+                <td style="background-color: #2c2c2c; padding: 20px; text-align: center;">
+                  <p style="margin: 0 0 8px 0; color: #ffffff; font-size: 12px; font-weight: 500;">
+                    Papatya Vadisi
                   </p>
-                  <p style="margin: 0 0 15px 0; color: #aaaaaa; font-size: 11px;">
+                  <p style="margin: 0 0 10px 0; color: #aaaaaa; font-size: 11px;">
                     ${language === "tr" 
                       ? "Doğanın kalbinde modern yaşam" 
                       : "Modern life in the heart of nature"}
                   </p>
-                  <p style="margin: 0; color: #888888; font-size: 11px;">
+                  <p style="margin: 0; color: #888888; font-size: 10px;">
                     © 2025 Papatya Vadisi. ${language === "tr" ? "Tüm hakları saklıdır." : "All rights reserved."}
                   </p>
-                  <p style="margin: 10px 0 0 0; color: #666666; font-size: 10px;">
-                    Osmaniye Merkez, Osmaniye
+                  <p style="margin: 8px 0 0 0; color: #666666; font-size: 10px;">
+                    Kadirli, Osmaniye
                   </p>
                 </td>
               </tr>
@@ -411,7 +384,7 @@ app.post("/api/contact", async (req, res) => {
     // Email validation - geçerli format kontrolü
     const validEmail = email && isValidEmail(email);
 
-    const transporter = createTransporter();
+    const transporter = await createTransporter();
 
     // Email to admin (Papatyavadisi)
     const adminMailOptions = {

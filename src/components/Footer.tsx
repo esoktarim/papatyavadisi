@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface FooterProps {
   language: "tr" | "en";
@@ -11,15 +12,14 @@ const Footer = ({ language }: FooterProps) => {
       menu: {
         corporate: "Kurumsal",
         projects: "Projeler",
-        projectMap: "Proje Haritası",
-        press: "Basın",
+        locations: "Lokasyonlar",
         contact: "İletişim",
       },
       contactInfo: {
         title: "İletişim",
         phone: "0542 398 26 66",
         email: "papatyavadisi80@gmail.com",
-        address: "Osmaniye Merkez, Osmaniye",
+        address: "Kadirli, Osmaniye",
       },
       legal: {
         privacy: "KVKK",
@@ -33,15 +33,14 @@ const Footer = ({ language }: FooterProps) => {
       menu: {
         corporate: "Corporate",
         projects: "Projects",
-        projectMap: "Project Map",
-        press: "Press & News",
+        locations: "Locations",
         contact: "Contact",
       },
       contactInfo: {
         title: "Contact",
         phone: "0542 398 26 66",
         email: "papatyavadisi80@gmail.com",
-        address: "Osmaniye Merkez, Osmaniye",
+        address: "Kadirli, Osmaniye",
       },
       legal: {
         privacy: "Privacy Policy",
@@ -55,37 +54,50 @@ const Footer = ({ language }: FooterProps) => {
   const t = content[language];
 
   const socialLinks = [
-    { icon: Facebook, href: "#" },
-    { icon: Instagram, href: "#" },
-    { icon: Linkedin, href: "#" },
-    { icon: Twitter, href: "#" },
+    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61581860677205&locale=tr_TR", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/papatyavadisi2025?igsh=MWFyMDZqcXExenM0Mg==", label: "Instagram" },
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="relative bg-gradient-to-br from-[#1A1E28] via-[#252A35] to-[#1A1E28] text-white overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#C7A664] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C7A664] rounded-full blur-3xl"></div>
+      </div>
+      
+      {/* Top Border Accent */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C7A664] to-transparent"></div>
+
       {/* Main Footer */}
-      <div className="section-padding">
+      <div className="relative z-10 section-padding">
         <div className="container-luxury">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
-            <div className="space-y-4">
-              <a href="/" className="font-serif text-2xl font-semibold inline-block hover:text-accent transition-smooth">
-                Papatya<span className="text-accent">vadisi</span>
-              </a>
-              <p className="text-primary-foreground/70 text-sm leading-relaxed">{t.tagline}</p>
+            <div className="space-y-5">
+              <div>
+                <a href="/" className="font-serif text-3xl font-light inline-block group">
+                  <span className="text-white group-hover:text-[#C7A664] transition-colors duration-300">Papatya</span>
+                  <span className="text-[#C7A664] group-hover:text-white transition-colors duration-300">vadisi</span>
+                </a>
+                <div className="h-[1px] w-16 bg-gradient-to-r from-[#C7A664] to-transparent mt-2"></div>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed font-light tracking-wide">{t.tagline}</p>
 
               {/* Social Links */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-2">
                 {socialLinks.map((social, idx) => {
                   const Icon = social.icon;
                   return (
                     <a
                       key={idx}
                       href={social.href}
-                      className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent transition-smooth"
-                      aria-label={`Social link ${idx + 1}`}
+                      target={social.href !== "#" ? "_blank" : undefined}
+                      rel={social.href !== "#" ? "noopener noreferrer" : undefined}
+                      className="group relative w-11 h-11 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:bg-[#C7A664] hover:border-[#C7A664] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#C7A664]/20"
+                      aria-label={social.label || `Social link ${idx + 1}`}
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300" />
                     </a>
                   );
                 })}
@@ -94,80 +106,125 @@ const Footer = ({ language }: FooterProps) => {
 
             {/* Menu Links */}
             <div>
-              <h3 className="font-semibold mb-4">{t.menu.corporate}</h3>
-              <ul className="space-y-2 text-sm text-primary-foreground/70">
+              <h3 className="font-light text-lg mb-6 text-white relative pb-3">
+                {language === "tr" ? "Menü" : "Menu"}
+                <span className="absolute bottom-0 left-0 h-[1px] w-12 bg-gradient-to-r from-[#C7A664] to-transparent"></span>
+              </h3>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
+                  <Link 
+                    to="/kurumsal" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
                     {t.menu.corporate}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
+                  <Link 
+                    to="/projeler" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
                     {t.menu.projects}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
-                    {t.menu.projectMap}
-                  </a>
+                  <Link 
+                    to="/lokasyonlar" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
+                    {t.menu.locations}
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
-                    {t.menu.press}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
+                  <Link 
+                    to="/iletisim" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
                     {t.menu.contact}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
 
             {/* Contact Info */}
             <div>
-              <h3 className="font-semibold mb-4">{t.contactInfo.title}</h3>
-              <ul className="space-y-3 text-sm text-primary-foreground/70">
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-accent shrink-0" />
-                  <a href={`tel:+90${t.contactInfo.phone.replace(/\s/g, "")}`} className="hover:text-accent transition-smooth">
+              <h3 className="font-light text-lg mb-6 text-white relative pb-3">
+                {t.contactInfo.title}
+                <span className="absolute bottom-0 left-0 h-[1px] w-12 bg-gradient-to-r from-[#C7A664] to-transparent"></span>
+              </h3>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-center gap-3 group">
+                  <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#C7A664]/20 group-hover:border-[#C7A664]/50 transition-all duration-300">
+                    <Phone className="w-4 h-4 text-[#C7A664] shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <a 
+                    href={`tel:+90${t.contactInfo.phone.replace(/\s/g, "")}`} 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide"
+                  >
                     {t.contactInfo.phone}
                   </a>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-accent shrink-0" />
-                  <a href={`mailto:${t.contactInfo.email}`} className="hover:text-accent transition-smooth">
+                <li className="flex items-center gap-3 group">
+                  <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#C7A664]/20 group-hover:border-[#C7A664]/50 transition-all duration-300">
+                    <Mail className="w-4 h-4 text-[#C7A664] shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <a 
+                    href={`mailto:${t.contactInfo.email}`} 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide break-all"
+                  >
                     {t.contactInfo.email}
                   </a>
                 </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-accent shrink-0 mt-1" />
-                  <span>{t.contactInfo.address}</span>
+                <li className="flex items-start gap-3 group">
+                  <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#C7A664]/20 group-hover:border-[#C7A664]/50 transition-all duration-300 mt-0.5">
+                    <MapPin className="w-4 h-4 text-[#C7A664] shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <span className="text-white/70 font-light tracking-wide leading-relaxed">{t.contactInfo.address}</span>
                 </li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <h3 className="font-semibold mb-4">{t.legal.privacy}</h3>
-              <ul className="space-y-2 text-sm text-primary-foreground/70">
+              <h3 className="font-light text-lg mb-6 text-white relative pb-3">
+                {language === "tr" ? "Yasal" : "Legal"}
+                <span className="absolute bottom-0 left-0 h-[1px] w-12 bg-gradient-to-r from-[#C7A664] to-transparent"></span>
+              </h3>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
+                  <Link 
+                    to="/kvkk" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
                     {t.legal.privacy}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-smooth">
+                  <Link 
+                    to="/cerez-politikasi" 
+                    className="text-white/70 hover:text-[#C7A664] transition-all duration-300 font-light tracking-wide group flex items-center gap-2"
+                  >
+                    <span className="w-0 h-[1px] bg-[#C7A664] group-hover:w-4 transition-all duration-300"></span>
                     {t.legal.cookies}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Copyright */}
-          <div className="pt-8 border-t border-primary-foreground/10 text-center text-sm text-primary-foreground/60">
-            <p>{t.copyright}</p>
+          <div className="pt-10 border-t border-white/10 text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+              <div className="w-2 h-2 rounded-full bg-[#C7A664]/50"></div>
+              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent via-white/20 to-transparent"></div>
+            </div>
+            <p className="text-white/50 text-xs font-light tracking-wide">{t.copyright}</p>
           </div>
         </div>
       </div>

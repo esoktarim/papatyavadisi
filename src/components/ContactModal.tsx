@@ -22,7 +22,7 @@ interface ContactModalProps {
 }
 
 const ContactModal = ({ language, open, onOpenChange }: ContactModalProps) => {
-  const [project, setProject] = useState("Papatya Vadisi - Faz 1");
+  const [project, setProject] = useState("Tek Katlı Villa");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -51,9 +51,8 @@ const ContactModal = ({ language, open, onOpenChange }: ContactModalProps) => {
       errorTitle: "Hata!",
       errorMessage: "Lütfen tüm alanları doldurun ve şartları kabul edin.",
       projects: [
-        "Papatya Vadisi - Faz 1",
-        "Papatya Vadisi - Faz 2",
-        "Papatya Vadisi - Örnek Konutlar",
+        "Tek Katlı Villa",
+        "Çift Katlı Villa",
       ],
     },
     en: {
@@ -75,9 +74,8 @@ const ContactModal = ({ language, open, onOpenChange }: ContactModalProps) => {
       errorTitle: "Error!",
       errorMessage: "Please fill all fields and accept the terms.",
       projects: [
-        "Papatya Vadisi - Phase 1",
-        "Papatya Vadisi - Phase 2",
-        "Papatya Vadisi - Model Homes",
+        "Single Story Villa",
+        "Double Story Villa",
       ],
     },
   };
