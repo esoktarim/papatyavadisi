@@ -15,11 +15,25 @@ interface IndexProps {
 }
 
 const Index = ({ language, onLanguageChange }: IndexProps) => {
-  // Preload hero image immediately when page loads
+  // Preload hero image immediately when page loads - Critical for instant display
   useEffect(() => {
-    const img = new Image();
-    img.src = heroImage;
-    img.fetchPriority = "high";
+    // Preload public version first (bypasses Vite bundling)
+    const img1 = new Image();
+    img1.src = "/hero-image.png";
+    img1.fetchPriority = "high";
+    
+    // Also preload bundled version as backup
+    const img2 = new Image();
+    img2.src = heroImage;
+    img2.fetchPriority = "high";
+    
+    // Force immediate loading
+    img1.onload = () => {
+      // Image ready and cached
+    };
+    img2.onload = () => {
+      // Backup image ready and cached
+    };
   }, []);
 
   return (

@@ -17,33 +17,53 @@ const Hero = ({ language }: HeroProps) => {
 
   // Preload hero image immediately - Critical for instant display
   useEffect(() => {
-    // Use public path for faster loading (bypasses Vite bundling)
-    const img = new Image();
-    img.src = heroImagePublic;
-    img.fetchPriority = "high";
+    // Create multiple Image objects to force aggressive preloading
+    const preloadImages = [];
     
-    // Force immediate load - don't wait for component
-    if ('loading' in img) {
-      (img as any).loading = "eager";
+    // Preload public version multiple times to ensure it's cached
+    for (let i = 0; i < 3; i++) {
+      const img = new Image();
+      img.src = heroImagePublic;
+      img.fetchPriority = "high";
+      preloadImages.push(img);
     }
     
-    // Ensure image loads before component renders
-    const preloadComplete = img.complete || img.naturalWidth > 0;
+    // Also preload bundled version as backup
+    const fallbackImg = new Image();
+    fallbackImg.src = heroImage;
+    fallbackImg.fetchPriority = "high";
+    preloadImages.push(fallbackImg);
     
-    if (!preloadComplete) {
+    // Force browser to cache all images immediately
+    preloadImages.forEach(img => {
       img.onload = () => {
-        // Image is ready
-        console.log('Hero image preloaded successfully');
+        // Image cached and ready
       };
       
       img.onerror = () => {
-        // Fallback to bundled image if public fails
-        console.warn('Public hero image failed, using bundled version');
-        const fallbackImg = new Image();
-        fallbackImg.src = heroImage;
-        fallbackImg.fetchPriority = "high";
+        // Fallback handling
+        if (img.src !== heroImage) {
+          const fallback = new Image();
+          fallback.src = heroImage;
+          fallback.fetchPriority = "high";
+        }
       };
-    }
+    });
+    
+    // Also use link preload as additional method
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = heroImagePublic;
+    link.setAttribute('fetchpriority', 'high');
+    document.head.appendChild(link);
+    
+    return () => {
+      // Cleanup
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
+    };
   }, []);
 
   const content = {
@@ -67,24 +87,29 @@ const Hero = ({ language }: HeroProps) => {
 
   return (
     <section className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '145px' }}>
-      {/* Background Image - Instant display, no loading state */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      {/* Background Image - Instant display using CSS background for better performance */}
+      <div 
+        className="absolute inset-0 z-0 overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroImagePublic})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          willChange: 'auto',
+          imageRendering: 'auto',
+          WebkitImageRendering: 'auto'
+        }}
+      >
+        {/* Fallback img for better SEO and accessibility */}
         <img
           src={heroImagePublic}
           alt="Luxury Architecture"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-0 pointer-events-none"
           fetchPriority="high"
           loading="eager"
           decoding="sync"
-          style={{ 
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center'
-          }}
+          aria-hidden="true"
           onError={(e) => {
-            // Fallback to bundled image if public fails
             const target = e.target as HTMLImageElement;
             if (target.src !== heroImage) {
               target.src = heroImage;
