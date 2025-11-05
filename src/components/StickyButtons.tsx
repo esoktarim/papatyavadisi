@@ -55,8 +55,8 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
     instagram: "https://www.instagram.com/papatyavadisi2025?igsh=MWFyMDZqcXExenM0Mg==",
     facebook: "https://www.facebook.com/profile.php?id=61581860677205&locale=tr_TR",
     tiktok: "https://www.tiktok.com/@papatyavadisi0?_r=1&_t=ZS-915eo2qV85g",
-    whatsapp: "https://wa.me/905423982666",
-    phone: "tel:+905423982666",
+    whatsapp: "https://wa.me/905366474810",
+    phone: "tel:+905366474810",
     telegram: "https://t.me/papatyavadisi", // Telegram linkinizi buraya ekleyin
   };
 

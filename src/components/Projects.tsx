@@ -19,7 +19,7 @@ const Projects = ({ language }: ProjectsProps) => {
           features: [
             "3+1",
             "144 m²",
-            "Arsa büyüklüğü: 440 m²",
+            "Arsa büyüklüğü: 385-480 m²",
             "24 ay %0 faiz fırsatı",
           ],
         },
@@ -30,7 +30,7 @@ const Projects = ({ language }: ProjectsProps) => {
           features: [
             "3+1",
             "144 m²",
-            "Arsa büyüklüğü: 407 m²",
+            "Arsa büyüklüğü: 407-510 m²",
             "24 ay %0 faiz fırsatı",
           ],
         },
@@ -47,7 +47,7 @@ const Projects = ({ language }: ProjectsProps) => {
           features: [
             "3+1",
             "144 m²",
-            "Land size: 440 m²",
+            "Land size: 385-480 m²",
             "24 months 0% interest",
           ],
         },
@@ -58,7 +58,7 @@ const Projects = ({ language }: ProjectsProps) => {
           features: [
             "3+1",
             "144 m²",
-            "Land size: 407 m²",
+            "Land size: 407-510 m²",
             "24 months 0% interest",
           ],
         },

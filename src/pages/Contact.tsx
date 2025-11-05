@@ -26,8 +26,8 @@ const Contact = ({ language, onLanguageChange }: ContactProps) => {
           {
             icon: Phone,
             label: "Telefon",
-            value: "0542 398 26 66",
-            link: "tel:+905423982666",
+            value: "0536 647 48 10",
+            link: "tel:+905366474810",
             description: "7/24 ulaşabilirsiniz",
           },
           {
@@ -71,8 +71,8 @@ const Contact = ({ language, onLanguageChange }: ContactProps) => {
           {
             icon: Phone,
             label: "Phone",
-            value: "0542 398 26 66",
-            link: "tel:+905423982666",
+            value: "0536 647 48 10",
+            link: "tel:+905366474810",
             description: "Available 24/7",
           },
           {
@@ -115,9 +115,9 @@ const Contact = ({ language, onLanguageChange }: ContactProps) => {
     <div className="min-h-screen bg-background">
       <Header language={language} onLanguageChange={onLanguageChange} />
       
-      <main className="pt-32">
+      <main className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-28 bg-gradient-to-br from-[#FAF8F3] via-[#F5F1E8] to-[#F0ECE3] overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-br from-[#FAF8F3] via-[#F5F1E8] to-[#F0ECE3] overflow-hidden">
           {/* Decorative Background Elements */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#C7A664] rounded-full blur-3xl"></div>
@@ -131,10 +131,10 @@ const Contact = ({ language, onLanguageChange }: ContactProps) => {
                 {language === "tr" ? "İletişim" : "Contact"}
               </span>
             </div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-[#2C2416] mb-6 leading-[1.2] tracking-[-0.02em] animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#2C2416] mb-4 sm:mb-6 leading-[1.2] tracking-[-0.02em] animate-fade-up" style={{ animationDelay: "100ms" }}>
               {t.title}
             </h1>
-            <p className="text-xl md:text-2xl text-[#5A5247] font-light max-w-3xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#5A5247] font-light max-w-3xl mx-auto leading-relaxed px-2 animate-fade-up" style={{ animationDelay: "200ms" }}>
               {t.subtitle}
             </p>
           </div>
@@ -143,20 +143,20 @@ const Contact = ({ language, onLanguageChange }: ContactProps) => {
         {/* Contact Info Cards */}
         <section className="section-padding bg-white">
           <div className="container-luxury max-w-7xl">
-            <div className="text-center mb-16 animate-fade-up">
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-[#2C2416] mb-4">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16 animate-fade-up">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-[#2C2416] mb-3 sm:mb-4">
                 {t.info.title}
               </h2>
               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#C7A664] to-transparent mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-16">
               {t.info.items.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="group relative bg-gradient-to-br from-white to-[#FAF8F3] rounded-2xl border border-[#E8E3D5] p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-up"
+                    className="group relative bg-gradient-to-br from-white to-[#FAF8F3] rounded-2xl border border-[#E8E3D5] p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-up"
                     style={{ animationDelay: `${idx * 100}ms` }}
                   >
                     {/* Icon Container */}

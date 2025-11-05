@@ -76,13 +76,13 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
     >
       <div className="container-luxury">
-        <nav className="flex items-center justify-between h-28 md:h-32">
+        <nav className="flex items-center justify-between h-32 md:h-36">
           {/* Logo */}
           <a href="/" className="flex items-center transition-smooth hover:opacity-80">
             <img 
               src={logo} 
               alt="Papatya Vadisi" 
-              className="h-24 md:h-28 lg:h-32 w-auto object-contain"
+              className="h-28 md:h-32 lg:h-36 xl:h-40 w-auto object-contain"
             />
           </a>
 
@@ -141,45 +141,15 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
             })}
           </div>
 
-          {/* Right Side: Language + Phone */}
+          {/* Right Side: Phone */}
           <div className="flex items-center gap-4 md:gap-6">
-            {/* Language Switcher */}
-            <div className="flex items-center bg-slate-100 rounded-lg p-1 gap-1 z-50">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  onLanguageChange("tr");
-                }}
-                className={`font-semibold text-sm transition-all duration-200 px-3 py-1.5 rounded-md min-w-[40px] ${
-                  language === "tr" 
-                    ? "bg-[#C7A664] text-white shadow-sm" 
-                    : "text-slate-600 hover:text-slate-800 hover:bg-slate-50"
-                }`}
-              >
-                TR
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  onLanguageChange("en");
-                }}
-                className={`font-semibold text-sm transition-all duration-200 px-3 py-1.5 rounded-md min-w-[40px] ${
-                  language === "en" 
-                    ? "bg-[#C7A664] text-white shadow-sm" 
-                    : "text-slate-600 hover:text-slate-800 hover:bg-slate-50"
-                }`}
-              >
-                EN
-              </button>
-            </div>
-
             {/* Phone */}
             <a
-              href="tel:+905423982666"
+              href="tel:+905366474810"
               className="hidden md:flex items-center gap-2 text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span>0542 398 26 66</span>
+              <span>0536 647 48 10</span>
             </a>
           </div>
         </nav>

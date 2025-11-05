@@ -23,7 +23,7 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
         {
           icon: MapPin,
           title: "Kadirli İlçesi",
-          distance: "41 km",
+          distance: "43 km",
           description: "Yakın ilçe merkezi",
         },
         {
@@ -41,14 +41,14 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
         {
           icon: Plane,
           title: "Çukurova Havalimanı",
-          distance: "2 saat",
+          distance: "2,5 saat",
           description: "Havalimanı erişimi",
         },
       ],
       features: {
         title: "Konum Avantajları",
         items: [
-          "Çam ormanları ile çevrili",
+          "Sedir ormanları ile çevrili",
           "Temiz hava ve doğal yaşam",
           "Şehir merkezine kolay erişim",
           "Stratejik ulaşım noktalarına yakın",
@@ -67,7 +67,7 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
         {
           icon: MapPin,
           title: "Kadirli District",
-          distance: "41 km",
+          distance: "43 km",
           description: "Nearby district center",
         },
         {
@@ -85,14 +85,14 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
         {
           icon: Plane,
           title: "Çukurova Airport",
-          distance: "2 hours",
+          distance: "2.5 hours",
           description: "Airport access",
         },
       ],
       features: {
         title: "Location Advantages",
         items: [
-          "Surrounded by pine forests",
+          "Surrounded by cedar forests",
           "Clean air and natural life",
           "Easy access to city center",
           "Close to strategic transport points",
@@ -125,7 +125,7 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
             <h1 className="heading-1 mb-6 text-white animate-fade-up">
               {t.title}
             </h1>
-            <p className="text-xl md:text-2xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed px-2 animate-fade-up" style={{ animationDelay: "200ms" }}>
               {t.subtitle}
             </p>
             

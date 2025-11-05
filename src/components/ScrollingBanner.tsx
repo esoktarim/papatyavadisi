@@ -19,7 +19,7 @@ const ScrollingBanner = ({ language }: ScrollingBannerProps) => {
   const texts = content[language];
 
   return (
-    <div className="fixed top-28 md:top-32 left-0 right-0 z-40 bg-[#C7A664] text-white py-2.5 overflow-hidden border-b border-[#B89654]/30 shadow-sm">
+    <div className="hidden md:block fixed top-32 md:top-36 left-0 right-0 z-40 bg-[#C7A664] text-white py-2.5 md:py-3 overflow-hidden border-b border-[#B89654]/30 shadow-sm">
       <div className="relative w-full overflow-hidden">
         <div className="flex animate-scroll-left whitespace-nowrap">
           <span className="text-sm md:text-base font-medium px-8">{texts.sentence1}</span>

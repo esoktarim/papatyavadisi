@@ -48,23 +48,23 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
         features: {
           room: "3+1",
           area: "144 m²",
-          land: "440 m²",
+          land: "385-480 m²",
           age: "Yeni",
           floor: "2 Kat",
-          bathroom: "1",
+          bathroom: "1 banyo üst katta 1 yarım banyo alt katta",
           parking: "Var",
         },
         description: "Doğanın kalbinde, modern mimari anlayışla tasarlanmış çift katlı villa. Ahşap lambri cephe, geniş teras ve ferah iç mekanlarıyla hayalinizdeki yaşamı sunuyor. Her detayın düşünüldüğü bu villa, konfor ve lüksü bir araya getiriyor.",
         details: {
           genel: [
             { label: "Oda Sayısı", value: "3+1" },
-            { label: "Banyo Sayısı", value: "1" },
+            { label: "Banyo Sayısı", value: "1 banyo üst katta 1 yarım banyo alt katta" },
             { label: "Brüt Alan", value: "144 m²" },
             { label: "Net Alan", value: "120.36 m²" },
-            { label: "Arsa Büyüklüğü", value: "440 m²" },
+            { label: "Arsa Büyüklüğü", value: "385-480 m²" },
             { label: "Bina Yaşı", value: "Yeni" },
             { label: "Kat Sayısı", value: "2" },
-            { label: "Balkon", value: "Var" },
+            { label: "Balkon", value: "Yok" },
             { label: "Bahçe", value: "Var" },
             { label: "Otopark", value: "Açık" },
             { label: "Teras", value: "Var (18.20 m²)" },
@@ -75,21 +75,20 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           icOzellikler: [
             { label: "Isıtma", value: "Merkezi" },
             { label: "Doğrama", value: "PVC (Ahşap panjurlu)" },
-            { label: "Zemin", value: "Ahşap lambri" },
+            { label: "Zemin", value: "Ahşap-seramik" },
             { label: "Salon Zemin", value: "Ahşap lambri" },
             { label: "Mutfak Zemin", value: "Ahşap lambri" },
-            { label: "Mutfak", value: "Açık (Amerikan) - MDFlam, Granit tezgah" },
+            { label: "Mutfak", value: "Açık-kapalı mutfak" },
             { label: "Giriş Zemin", value: "Ahşap görünümlü seramik" },
             { label: "Banyo Zemin", value: "Seramik" },
             { label: "Banyo Duvar", value: "Fayans" },
             { label: "Asansör", value: "Yok" },
-            { label: "Klima", value: "Var" },
             { label: "Duvar", value: "Ahşap lambri" },
             { label: "Tavan", value: "Ahşap lambri" },
           ],
           disOzellikler: [
             { label: "Bahçe", value: "Var" },
-            { label: "Balkon", value: "Var" },
+            { label: "Balkon", value: "Yok" },
             { label: "Teras", value: "Var" },
             { label: "Otopark", value: "Açık" },
             { label: "Çocuk Oyun Alanı", value: "Yakın" },
@@ -104,23 +103,23 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
         features: {
           room: "3+1",
           area: "144 m²",
-          land: "440 m²",
+          land: "385-480 m²",
           age: "New",
           floor: "2 Floors",
-          bathroom: "1",
+          bathroom: "1 bathroom on upper floor, 1 half bathroom on lower floor",
           parking: "Yes",
         },
         description: "A two-story villa designed with modern architecture in the heart of nature. Wooden paneled facade, spacious terrace and airy interiors offer your dream life. Every detail has been considered, combining comfort and luxury.",
         details: {
           genel: [
             { label: "Room Count", value: "3+1" },
-            { label: "Bathroom Count", value: "1" },
+            { label: "Bathroom Count", value: "1 bathroom on upper floor, 1 half bathroom on lower floor" },
             { label: "Gross Area", value: "144 m²" },
             { label: "Net Area", value: "120.36 m²" },
-            { label: "Land Size", value: "440 m²" },
+            { label: "Land Size", value: "385-480 m²" },
             { label: "Building Age", value: "New" },
             { label: "Floor Count", value: "2" },
-            { label: "Balcony", value: "Yes" },
+            { label: "Balcony", value: "No" },
             { label: "Garden", value: "Yes" },
             { label: "Parking", value: "Open" },
             { label: "Terrace", value: "Yes (18.20 m²)" },
@@ -131,21 +130,20 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           icOzellikler: [
             { label: "Heating", value: "Central" },
             { label: "Frames", value: "PVC (Wooden shutters)" },
-            { label: "Flooring", value: "Wooden paneling" },
+            { label: "Flooring", value: "Wood-ceramic" },
             { label: "Living Room Floor", value: "Wooden paneling" },
             { label: "Kitchen Floor", value: "Wooden paneling" },
-            { label: "Kitchen", value: "Open (American) - MDFlam, Granite countertop" },
+            { label: "Kitchen", value: "Open-closed kitchen" },
             { label: "Entrance Floor", value: "Wood-look ceramic" },
             { label: "Bathroom Floor", value: "Ceramic" },
             { label: "Bathroom Wall", value: "Tiles" },
             { label: "Elevator", value: "No" },
-            { label: "Air Conditioning", value: "Yes" },
             { label: "Wall", value: "Wooden paneling" },
             { label: "Ceiling", value: "Wooden paneling" },
           ],
           disOzellikler: [
             { label: "Garden", value: "Yes" },
-            { label: "Balcony", value: "Yes" },
+            { label: "Balcony", value: "No" },
             { label: "Terrace", value: "Yes" },
             { label: "Parking", value: "Open" },
             { label: "Playground", value: "Nearby" },
@@ -166,23 +164,23 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
         features: {
           room: "3+1",
           area: "110 m²",
-          land: "407 m²",
+          land: "407-510 m²",
           age: "Yeni",
           floor: "1 Kat",
-          bathroom: "1",
+          bathroom: "1 banyo üst katta 1 yarım banyo alt katta",
           parking: "Var",
         },
         description: "Tek katlı villa, modern yaşamın tüm gereksinimlerini karşılayan ferah ve fonksiyonel bir tasarıma sahiptir. Ahşap lambri cephe, geniş teras ve doğal çevresiyle huzurlu bir yaşam sunar.",
         details: {
           genel: [
             { label: "Oda Sayısı", value: "3+1" },
-            { label: "Banyo Sayısı", value: "2 (Banyo + WC)" },
+            { label: "Banyo Sayısı", value: "1 banyo üst katta 1 yarım banyo alt katta" },
             { label: "Brüt Alan", value: "110 m²" },
             { label: "Net Alan", value: "97.89 m²" },
-            { label: "Arsa Büyüklüğü", value: "407 m²" },
+            { label: "Arsa Büyüklüğü", value: "407-510 m²" },
             { label: "Bina Yaşı", value: "Yeni" },
             { label: "Kat Sayısı", value: "1" },
-            { label: "Balkon", value: "Var" },
+            { label: "Balkon", value: "Yok" },
             { label: "Bahçe", value: "Var" },
             { label: "Otopark", value: "Açık" },
             { label: "Teras", value: "Var (14.97 m²)" },
@@ -190,21 +188,21 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           icOzellikler: [
             { label: "Isıtma", value: "Merkezi" },
             { label: "Doğrama", value: "PVC (Ahşap panjurlu)" },
+            { label: "Zemin", value: "Ahşap-seramik" },
             { label: "Giriş Zemin", value: "Seramik" },
             { label: "Salon Zemin", value: "Ahşap" },
             { label: "Mutfak Zemin", value: "Ahşap" },
             { label: "Oda Zeminleri", value: "Ahşap" },
             { label: "Banyo Zemin", value: "Seramik" },
             { label: "Banyo Duvar", value: "Fayans" },
-            { label: "Mutfak", value: "MDF, Granit tezgah" },
+            { label: "Mutfak", value: "Açık-kapalı mutfak" },
             { label: "Duvar", value: "Ahşap lambri" },
             { label: "Tavan", value: "Ahşap lambri" },
             { label: "Asansör", value: "Yok" },
-            { label: "Klima", value: "Var" },
           ],
           disOzellikler: [
             { label: "Bahçe", value: "Var" },
-            { label: "Balkon", value: "Var" },
+            { label: "Balkon", value: "Yok" },
             { label: "Teras", value: "Var" },
             { label: "Otopark", value: "Açık" },
             { label: "Çocuk Oyun Alanı", value: "Yakın" },
@@ -219,23 +217,23 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
         features: {
           room: "3+1",
           area: "110 m²",
-          land: "407 m²",
+          land: "407-510 m²",
           age: "New",
           floor: "1 Floor",
-          bathroom: "1",
+          bathroom: "1 bathroom on upper floor, 1 half bathroom on lower floor",
           parking: "Yes",
         },
         description: "The single-story villa features a spacious and functional design that meets all the requirements of modern living. Wooden paneled facade, spacious terrace and natural surroundings offer a peaceful life.",
         details: {
           genel: [
             { label: "Room Count", value: "3+1" },
-            { label: "Bathroom Count", value: "2 (Bathroom + WC)" },
+            { label: "Bathroom Count", value: "1 bathroom on upper floor, 1 half bathroom on lower floor" },
             { label: "Gross Area", value: "110 m²" },
             { label: "Net Area", value: "97.89 m²" },
-            { label: "Land Size", value: "407 m²" },
+            { label: "Land Size", value: "407-510 m²" },
             { label: "Building Age", value: "New" },
             { label: "Floor Count", value: "1" },
-            { label: "Balcony", value: "Yes" },
+            { label: "Balcony", value: "No" },
             { label: "Garden", value: "Yes" },
             { label: "Parking", value: "Open" },
             { label: "Terrace", value: "Yes (14.97 m²)" },
@@ -243,21 +241,21 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           icOzellikler: [
             { label: "Heating", value: "Central" },
             { label: "Frames", value: "PVC (Wooden shutters)" },
+            { label: "Flooring", value: "Wood-ceramic" },
             { label: "Entrance Floor", value: "Ceramic" },
             { label: "Living Room Floor", value: "Wood" },
             { label: "Kitchen Floor", value: "Wood" },
             { label: "Room Floors", value: "Wood" },
             { label: "Bathroom Floor", value: "Ceramic" },
             { label: "Bathroom Wall", value: "Tiles" },
-            { label: "Kitchen", value: "MDF, Granite countertop" },
+            { label: "Kitchen", value: "Open-closed kitchen" },
             { label: "Wall", value: "Wooden paneling" },
             { label: "Ceiling", value: "Wooden paneling" },
             { label: "Elevator", value: "No" },
-            { label: "Air Conditioning", value: "Yes" },
           ],
           disOzellikler: [
             { label: "Garden", value: "Yes" },
-            { label: "Balcony", value: "Yes" },
+            { label: "Balcony", value: "No" },
             { label: "Terrace", value: "Yes" },
             { label: "Parking", value: "Open" },
             { label: "Playground", value: "Nearby" },
@@ -345,8 +343,8 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
       <main className="pt-20 pb-16">
         {/* Breadcrumb */}
         <div className={`bg-white ${breadcrumbBorderClass}`}>
-          <div className="max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-5">
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="max-w-[92%] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-4 md:py-5">
+            <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500 flex-wrap">
               <button onClick={() => navigate("/")} className="hover:text-[#C7A664] transition-colors">
                 {language === "tr" ? "Ana Sayfa" : "Home"}
               </button>
@@ -360,8 +358,8 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           </div>
         </div>
 
-        <div className="max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-8">
-          <div className="grid lg:grid-cols-2 gap-8">
+        <div className="max-w-[92%] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-4 sm:py-6 md:py-8">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {/* Left Column - Images */}
             <div className="space-y-4">
               {/* Main Image */}
@@ -476,12 +474,12 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
               )}
 
               {/* Title and Location */}
-              <div className={`bg-white rounded-lg p-8 ${borderClass} shadow-sm`}>
-                <h1 className="text-5xl font-semibold text-gray-900 mb-3 tracking-tight" style={{ letterSpacing: '-0.02em', fontFamily: "'Poppins', sans-serif" }}>
+              <div className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 ${borderClass} shadow-sm`}>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-2 sm:mb-3 tracking-tight" style={{ letterSpacing: '-0.02em', fontFamily: "'Poppins', sans-serif" }}>
                   {t.title}
                 </h1>
                 <div className="h-1 w-20 bg-gradient-to-r from-[#b88a44] to-[#C7A664] mb-4 rounded-full" />
-                <p className="text-gray-600 text-lg font-light mb-6 italic" style={{ fontFamily: "'Inter', sans-serif" }}>
+                <p className="text-gray-600 text-base sm:text-lg font-light mb-4 sm:mb-6 italic px-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                   {language === "tr" ? "Doğanın Kalbinde, Şehrin Konforunda Yaşam." : "Life in the Heart of Nature, Comfort of the City."}
                 </p>
                 <div className="flex items-center gap-2 text-gray-500">
@@ -523,11 +521,11 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
               </div>
 
               {/* Description */}
-              <div className={`bg-white rounded-lg p-8 ${borderClass} shadow-sm animate-fade-in`}>
-                <h2 className="text-xl font-semibold text-gray-900 mb-4" style={{ letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif" }}>
+              <div className={`bg-white rounded-lg p-4 sm:p-6 md:p-8 ${borderClass} shadow-sm animate-fade-in`}>
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4" style={{ letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif" }}>
                   {language === "tr" ? "Açıklama" : "Description"}
                 </h2>
-                <p className="text-gray-600 leading-relaxed font-light">{t.description}</p>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-light">{t.description}</p>
               </div>
             </div>
 
@@ -631,14 +629,14 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                   {/* Contact Buttons */}
                   <div className="space-y-3">
                     <a
-                      href="tel:+905423982666"
+                      href="tel:+905366474810"
                       className="w-full bg-[#C7A664] hover:bg-[#B89654] text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 text-sm"
                     >
                       <Phone className="w-4 h-4" />
                       {language === "tr" ? "Hemen Ara" : "Call Now"}
                     </a>
                     <a
-                      href="https://wa.me/905423982666"
+                      href="https://wa.me/905366474810"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 text-sm"
@@ -659,7 +657,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                   <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
                     <div className="flex items-center gap-2 text-xs text-gray-600">
                       <Phone className="w-3.5 h-3.5 text-[#C7A664]" />
-                      <a href="tel:+905423982666" className="hover:text-[#C7A664] transition-colors">0542 398 26 66</a>
+                      <a href="tel:+905366474810" className="hover:text-[#C7A664] transition-colors">0536 647 48 10</a>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-600">
                       <Mail className="w-3.5 h-3.5 text-[#C7A664]" />

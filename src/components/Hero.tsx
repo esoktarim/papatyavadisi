@@ -57,7 +57,7 @@ const Hero = ({ language }: HeroProps) => {
   const t = content[language];
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '125px' }}>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '145px' }}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img

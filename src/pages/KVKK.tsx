@@ -44,7 +44,7 @@ const KVKK = ({ language, onLanguageChange }: KVKKProps) => {
         },
         {
           title: "7. İletişim",
-          content: "KVKK kapsamındaki haklarınızı kullanmak için papatyavadisi80@gmail.com adresine e-posta gönderebilir veya 0542 398 26 66 numaralı telefonu arayabilirsiniz.",
+          content: "KVKK kapsamındaki haklarınızı kullanmak için papatyavadisi80@gmail.com adresine e-posta gönderebilir veya 0536 647 48 10 numaralı telefonu arayabilirsiniz.",
         },
       ],
     },
@@ -79,7 +79,7 @@ const KVKK = ({ language, onLanguageChange }: KVKKProps) => {
         },
         {
           title: "7. Contact",
-          content: "To exercise your rights under KVKK, you can send an email to papatyavadisi80@gmail.com or call +90 542 398 26 66.",
+          content: "To exercise your rights under KVKK, you can send an email to papatyavadisi80@gmail.com or call +90 536 647 48 10.",
         },
       ],
     },
@@ -91,10 +91,10 @@ const KVKK = ({ language, onLanguageChange }: KVKKProps) => {
     <div className="min-h-screen bg-background">
       <Header language={language} onLanguageChange={onLanguageChange} />
       
-      <main className="pt-40 pb-20">
+      <main className="pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20">
         <div className="container-luxury max-w-4xl">
           <div className="mb-12 text-center animate-fade-up">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
               {t.title}
             </h1>
             <p className="text-lg text-slate-600 mb-2">{t.subtitle}</p>

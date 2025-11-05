@@ -53,7 +53,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
       },
       about: {
         title: "Hakkımızda",
-        quote: "Kadirli'nin Bağdaş Yaylası'nda, doğa ile şehrin buluştuğu noktada yer alan Papatya Vadisi, çam ormanları ile çevrili, temiz hava ve huzurlu bir yaşam alanı sunmaktadır. Modern mimari, geniş teraslar ve doğa odaklı planlama ile sessiz, güvenli ve ayrıcalıklı bir yaşam deneyimi sunuyoruz.",
+        quote: "Kadirli'nin Bağdaş Yaylası'nda, doğa ile şehrin buluştuğu noktada yer alan Papatya Vadisi, sedir ormanları ile çevrili, temiz hava ve huzurlu bir yaşam alanı sunmaktadır. Modern mimari, geniş teraslar ve doğa odaklı planlama ile sessiz, güvenli ve ayrıcalıklı bir yaşam deneyimi sunuyoruz.",
         description: "Papatya Vadisi olarak, müşterilerimize değer katan, doğayla uyumlu ve sürdürülebilir projeler geliştirmekteyiz. Tüm projelerimizi kendi öz kaynaklarımızla hayata geçiriyor, yüksek eğitimli ve deneyimli kadromuzla inşaat tekniklerini en üst düzeyde uyguluyoruz. Üstün kalite ve güvenilirlik ilkeleri doğrultusunda sektördeki konumumuzu pekiştirmiş, gelecekteki hedefimiz olarak uluslararası projelerle bu standardı daha da ileriye taşımayı planlıyoruz.",
       },
       stats: {
@@ -138,7 +138,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
       },
       about: {
         title: "About Us",
-        quote: "Located at Osmaniye's Bağdaş Plateau, where nature meets the city, Papatya Vadisi offers a living space surrounded by pine forests, clean air, and peaceful environment. We provide a quiet, safe, and privileged living experience with modern architecture, wide terraces, and nature-oriented planning.",
+        quote: "Located at Osmaniye's Bağdaş Plateau, where nature meets the city, Papatya Vadisi offers a living space surrounded by cedar forests, clean air, and peaceful environment. We provide a quiet, safe, and privileged living experience with modern architecture, wide terraces, and nature-oriented planning.",
         description: "As Papatya Vadisi, we develop projects that add value to our customers, are compatible with nature, and sustainable. We realize all our projects with our own resources and apply construction techniques at the highest level with our highly educated and experienced staff. We have strengthened our position in the sector in line with superior quality and reliability principles, and our future goal is to carry this standard even further with international projects.",
       },
       stats: {
@@ -268,10 +268,10 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
                 {language === "tr" ? "Kurumsal" : "Corporate"}
               </span>
             </div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-[#2C2416] mb-6 leading-[1.2] tracking-[-0.02em] animate-fade-up" style={{ animationDelay: "100ms" }}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#2C2416] mb-4 sm:mb-6 leading-[1.2] tracking-[-0.02em] animate-fade-up" style={{ animationDelay: "100ms" }}>
               {t.title}
             </h1>
-            <p className="text-xl md:text-2xl text-[#5A5247] font-light max-w-3xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#5A5247] font-light max-w-3xl mx-auto leading-relaxed px-2 animate-fade-up" style={{ animationDelay: "200ms" }}>
               {t.subtitle}
             </p>
           </div>
@@ -323,7 +323,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#C7A664] to-transparent mx-auto"></div>
             </div>
             
-            <div className={`grid md:grid-cols-2 gap-12 lg:gap-16 items-center transition-all duration-1000 ${isVisible["hakkimizda"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+            <div className={`grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center transition-all duration-1000 ${isVisible["hakkimizda"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
               {/* Image Section - Left Side */}
               <div className="relative animate-fade-up" style={{ animationDelay: "100ms" }}>
                 <div className="relative">
@@ -382,7 +382,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#C7A664] to-transparent mx-auto"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {t.stats.items.map((stat, idx) => {
                 const Icon = stat.icon;
                 const isVisibleItem = isVisible["rakamlar"];
@@ -422,7 +422,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
           className="section-padding bg-gradient-to-br from-[#FAF8F3] via-[#F5F1E8] to-[#F0ECE3]"
         >
           <div className="container-luxury max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
               <div
                 className={`bg-white rounded-2xl border border-[#E8E3D5] p-8 md:p-10 shadow-sm hover:shadow-md transition-all duration-300 ${
                   isVisible["misyon"] ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
@@ -498,7 +498,7 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
           </div>
           
           <div className="container-luxury max-w-6xl relative z-10">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
               <div
                 className={`bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8 md:p-10 text-white transition-all duration-1000 ${
                   isVisible["policies"] ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"

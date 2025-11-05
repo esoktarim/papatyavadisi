@@ -17,7 +17,7 @@ const Footer = ({ language }: FooterProps) => {
       },
       contactInfo: {
         title: "İletişim",
-        phone: "0542 398 26 66",
+        phone: "0536 647 48 10",
         email: "papatyavadisi80@gmail.com",
         address: "Kadirli, Osmaniye",
       },
@@ -38,7 +38,7 @@ const Footer = ({ language }: FooterProps) => {
       },
       contactInfo: {
         title: "Contact",
-        phone: "0542 398 26 66",
+        phone: "0536 647 48 10",
         email: "papatyavadisi80@gmail.com",
         address: "Kadirli, Osmaniye",
       },
