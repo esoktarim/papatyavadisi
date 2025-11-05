@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Phone, ChevronDown, Home } from "lucide-react";
+import { Phone, ChevronDown, Home, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
+import logoMobile from "@/assets/logo1.png";
 
 interface HeaderProps {
   language: "tr" | "en";
@@ -11,8 +12,10 @@ interface HeaderProps {
 const Header = ({ language, onLanguageChange }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -30,16 +33,19 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsProjectsDropdownOpen(false);
       }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
     };
 
-    if (isProjectsDropdownOpen) {
+    if (isProjectsDropdownOpen || isMobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isProjectsDropdownOpen]);
+  }, [isProjectsDropdownOpen, isMobileMenuOpen]);
 
   const menuItems = {
     tr: [
@@ -80,9 +86,14 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
           {/* Logo */}
           <a href="/" className="flex items-center transition-smooth hover:opacity-80">
             <img 
+              src={logoMobile} 
+              alt="Papatya Vadisi" 
+              className="h-20 md:hidden w-auto object-contain"
+            />
+            <img 
               src={logo} 
               alt="Papatya Vadisi" 
-              className="h-28 md:h-32 lg:h-36 xl:h-40 w-auto object-contain"
+              className="hidden md:block h-28 md:h-32 lg:h-36 xl:h-40 w-auto object-contain"
             />
           </a>
 
@@ -141,8 +152,21 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
             })}
           </div>
 
-          {/* Right Side: Phone */}
+          {/* Right Side: Mobile Menu Button & Phone */}
           <div className="flex items-center gap-4 md:gap-6">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 hover:bg-[#C7A664] text-slate-700 hover:text-white transition-all duration-300"
+              aria-label="Menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+
             {/* Phone */}
             <a
               href="tel:+905366474810"
@@ -154,6 +178,81 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
           </div>
         </nav>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div 
+          ref={mobileMenuRef}
+          className="md:hidden fixed top-32 left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-50 animate-in slide-in-from-top duration-300"
+        >
+          <div className="container-luxury py-4">
+            <nav className="flex flex-col gap-2">
+              {/* Home Icon - Only show on non-home pages */}
+              {!isHomePage && (
+                <a
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700"
+                >
+                  <Home className="w-5 h-5" />
+                  <span className="font-medium">{language === "tr" ? "Ana Sayfa" : "Home"}</span>
+                </a>
+              )}
+              {menuItems[language].map((item) => {
+                if (item.hasDropdown) {
+                  return (
+                    <div key={item.path} className="flex flex-col">
+                      <button
+                        onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
+                        className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700 font-medium"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isProjectsDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isProjectsDropdownOpen && (
+                        <div className="pl-4 mt-1 space-y-1">
+                          {projectOptions[language].map((option) => (
+                            <a
+                              key={option.path}
+                              href={option.path}
+                              onClick={() => {
+                                setIsProjectsDropdownOpen(false);
+                                setIsMobileMenuOpen(false);
+                              }}
+                              className="block px-4 py-2 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-600 text-sm"
+                            >
+                              {option.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="px-4 py-3 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-colors text-slate-700 font-medium"
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+              {/* Mobile Phone */}
+              <a
+                href="tel:+905366474810"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#C7A664] text-white hover:bg-[#B89654] transition-colors font-medium mt-2"
+              >
+                <Phone className="w-5 h-5" />
+                <span>0536 647 48 10</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
