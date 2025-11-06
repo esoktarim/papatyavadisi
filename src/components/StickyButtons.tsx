@@ -16,21 +16,45 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
     return null;
   }
 
-  // Hero section görünürlüğünü kontrol et
+  // Hero section görünürlüğünü kontrol et - Optimized to prevent forced reflow
   useEffect(() => {
+    let rafId: number | null = null;
+    let ticking = false;
+
     const handleScroll = () => {
-      const heroSection = document.querySelector('section[class*="h-screen"]');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        // Hero section ekranda görünürken butonları göster
-        setIsVisible(rect.top >= -100 && rect.bottom > window.innerHeight * 0.3);
+      if (!ticking) {
+        rafId = window.requestAnimationFrame(() => {
+          const heroSection = document.querySelector('section[class*="h-screen"]');
+          if (heroSection) {
+            // Batch DOM reads together to prevent forced reflow
+            const rect = heroSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            // Hero section ekranda görünürken butonları göster
+            setIsVisible(rect.top >= -100 && rect.bottom > viewportHeight * 0.3);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // İlk yüklemede kontrol et
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // İlk yüklemede kontrol et - requestAnimationFrame ile
+    rafId = window.requestAnimationFrame(() => {
+      const heroSection = document.querySelector('section[class*="h-screen"]');
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        setIsVisible(rect.top >= -100 && rect.bottom > viewportHeight * 0.3);
+      }
+    });
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   const content = {
