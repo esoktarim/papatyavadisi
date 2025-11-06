@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Papatya Vadisi</title>
     
+    <!-- Preconnect to Vercel domain for faster resource loading -->
+    <link rel="preconnect" href="https://papatyavadisi-eo4n.vercel.app" />
+    <link rel="dns-prefetch" href="https://papatyavadisi-eo4n.vercel.app" />
+    
     <!-- Critical: Preload Hero Image - Highest Priority (before any other resource) -->
     <!-- Note: Actual image is loaded from assets/11.png via Vite bundling -->
     <link rel="preload" as="image" href="/hero-image.png" fetchpriority="high" />
+    <!-- Also preload bundled version if available -->
+    <link rel="preload" as="image" href="/assets/11.png" fetchpriority="high" />
     
     <!-- Critical: Preload Logo - Highest Priority -->
     <link rel="preload" as="image" href="/logo.png" fetchpriority="high" />

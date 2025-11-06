@@ -12,6 +12,22 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize chunk splitting for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['lucide-react'],
+        },
+      },
+    },
+    // Enable minification (esbuild is faster, terser needs extra dependency)
+    minify: 'esbuild',
+    // Optimize asset handling
+    assetsInlineLimit: 4096, // Inline small assets (< 4KB)
+    chunkSizeWarningLimit: 1000,
+  },
   server: {
     host: true,
     port: 5173,
