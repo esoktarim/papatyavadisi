@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
+// PORT environment variable'ı (PM2 veya hosting platform'u için)
 const PORT = process.env.PORT || 3001;
 
 // Middleware

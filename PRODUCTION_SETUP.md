@@ -38,20 +38,19 @@ pm2 monit                     # Canlı monitoring
 
 ## 🌐 Hosting Alternatifleri
 
-### 1. Railway.app (Önerilen - Ücretsiz)
+### 1. Vercel (Önerilen - Ücretsiz)
 - ✅ GitHub ile otomatik deploy
 - ✅ Ücretsiz SSL
-- ✅ Otomatik restart
+- ✅ Serverless functions (backend `api/` klasöründe)
 - ✅ Kolay environment variable yönetimi
+- ✅ Frontend + Backend tek projede
 
 **Kurulum:**
-1. [railway.app](https://railway.app) → Sign up with GitHub
-2. New Project → Deploy from GitHub
-3. Repo seç → `server` klasörünü seç
-4. Environment Variables ekle:
+1. [vercel.com](https://vercel.com) → GitHub ile giriş
+2. Import Project → Repo seç
+3. Environment Variables ekle:
    - `EMAIL_USER`
    - `EMAIL_PASS`
-   - `PORT`
 
 ### 2. Render.com (Ücretsiz)
 - ✅ Ücretsiz tier mevcut
@@ -117,8 +116,7 @@ Let's Encrypt → SSL
 
 **Cloud Hosting:**
 ```
-Backend → Railway/Render
-Frontend → Vercel/Netlify
-→ Her ikisi de ücretsiz!
+Backend + Frontend → Vercel (Serverless Functions)
+→ Tek proje, ücretsiz!
 ```
 

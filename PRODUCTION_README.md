@@ -31,28 +31,21 @@ VITE_API_URL=https://your-backend-url.com
 
 ---
 
-## 🎯 En Kolay Yol: Railway + Vercel (Ücretsiz)
+## 🎯 Vercel Deployment (Frontend + Backend)
 
-### Backend (Railway):
-1. [railway.app](https://railway.app) → GitHub ile giriş
-2. New Project → Repo seç → `server` klasörünü root yap
-3. Environment Variables:
-   - `EMAIL_USER=papatyavadisi80@gmail.com`
-   - `EMAIL_PASS=zzzccntknlunuopk` (Gmail App Password)
-   - `PORT=3001`
-   - `CORS_ORIGIN=*` (veya domain)
-4. Deploy → URL alın: `https://papatyavadisi-backend.railway.app`
-
-### Frontend (Vercel):
+### Vercel'de Tek Proje:
 1. [vercel.com](https://vercel.com) → GitHub ile giriş
 2. Import Project → Repo seç
 3. Build Settings:
    - Framework: Vite
    - Build: `npm run build`
    - Output: `dist`
-4. Environment Variable:
-   - `VITE_API_URL=https://papatyavadisi-backend.railway.app`
+4. Environment Variables ekle:
+   - `EMAIL_USER=papatyavadisi80@gmail.com`
+   - `EMAIL_PASS=your_gmail_app_password`
 5. Deploy → URL alın: `https://papatyavadisi.vercel.app`
+
+**Not:** Backend `api/` klasöründeki serverless functions olarak otomatik deploy edilir.
 
 ---
 
@@ -88,7 +81,7 @@ VITE_API_URL=https://your-backend-url.com
 
 **Production'a hazır!** ✅
 
-Tüm güvenlik önlemleri alındı ve yapılandırmalar yapıldı. Railway + Vercel ile deploy ederseniz sorunsuz çalışacaktır.
+Tüm güvenlik önlemleri alındı ve yapılandırmalar yapıldı. Vercel'de deploy ederseniz sorunsuz çalışacaktır.
 
 **Sorun çıkmaz çünkü:**
 - ✅ CORS ayarları hazır

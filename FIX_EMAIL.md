@@ -51,20 +51,15 @@ Invoke-WebRequest -Uri "http://localhost:3001/api/health"
 .\test-api.ps1
 ```
 
-## 🌐 Production İçin
+## 🌐 Production İçin (Vercel)
 
-### Backend (Railway/Render):
-1. Backend'i deploy edin
-2. Environment Variables:
+### Vercel'de Tek Proje:
+1. Vercel Dashboard → Project Settings → Environment Variables
+2. Şu değişkenleri ekleyin:
    - `EMAIL_USER=papatyavadisi80@gmail.com`
    - `EMAIL_PASS=your_gmail_app_password`
-   - `PORT=3001`
-   - `CORS_ORIGIN=https://yourdomain.com`
-
-### Frontend (Vercel/Netlify):
-1. Environment Variable ekleyin:
-   - `VITE_API_URL=https://your-backend-url.com`
-2. Deploy edin
+3. Deploy edin
+4. Backend `api/` klasöründeki serverless functions olarak otomatik çalışır
 
 ## ✅ Kontrol Listesi
 

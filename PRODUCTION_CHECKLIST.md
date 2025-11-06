@@ -35,16 +35,13 @@ PORT=3001
 CORS_ORIGIN=https://yourdomain.com
 ```
 
-#### Seçenek B: Railway.app (Önerilen - Ücretsiz)
-1. [railway.app](https://railway.app) → Sign up
-2. New Project → Deploy from GitHub
-3. Repo seç → `server` klasörünü root yap
-4. **Environment Variables ekle:**
+#### Seçenek B: Vercel Serverless Functions (Önerilen)
+1. [vercel.com](https://vercel.com) → GitHub ile giriş
+2. Import Project → Repo seç
+3. **Environment Variables ekle:**
    - `EMAIL_USER=papatyavadisi80@gmail.com`
    - `EMAIL_PASS=your_gmail_app_password`
-   - `PORT=3001`
-   - `CORS_ORIGIN=https://yourdomain.com`
-5. Deploy → Backend URL'i alın (örn: `https://papatyavadisi-backend.railway.app`)
+4. Deploy → Backend `api/` klasöründeki serverless functions olarak otomatik deploy edilir
 
 #### Seçenek C: Render.com
 1. [render.com](https://render.com) → Sign up
@@ -67,8 +64,9 @@ CORS_ORIGIN=https://yourdomain.com
    - Build Command: `npm run build`
    - Output Directory: `dist`
 4. **Environment Variables ekle:**
-   - `VITE_API_URL=https://your-backend-url.railway.app`
-   - (Backend URL'i Railway/Render'dan aldığınız)
+   - `EMAIL_USER=papatyavadisi80@gmail.com`
+   - `EMAIL_PASS=your_gmail_app_password`
+   - (Backend `api/` klasöründe serverless functions olarak çalışır)
 5. Deploy → Frontend URL'i alın
 
 #### Seçenek B: Netlify
@@ -159,5 +157,5 @@ Tüm güvenlik önlemleri alındı:
 - ✅ Console log'lar sadece development'ta
 - ✅ Error handling iyileştirildi
 
-**Sonraki adım:** Railway/Vercel gibi hosting platform'una deploy edin!
+**Sonraki adım:** Vercel'e deploy edin!
 
