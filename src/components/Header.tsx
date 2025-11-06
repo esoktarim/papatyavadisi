@@ -49,6 +49,18 @@ const Header = ({ language }: HeaderProps) => {
     };
   }, [isProjectsDropdownOpen, isMobileMenuOpen]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const menuItems = {
     tr: [
       { label: "Kurumsal", path: "/kurumsal", hasDropdown: false },
@@ -201,14 +213,22 @@ const Header = ({ language }: HeaderProps) => {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay & Menu */}
       {isMobileMenuOpen && (
-        <div 
-          ref={mobileMenuRef}
-          className="md:hidden fixed top-28 left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-slate-200/60 shadow-xl z-50 animate-in slide-in-from-top duration-300"
-        >
-          <div className="container-luxury py-4">
-            <nav className="flex flex-col gap-1">
+        <>
+          {/* Backdrop Overlay */}
+          <div 
+            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-in fade-in duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          
+          {/* Mobile Menu Panel */}
+          <div 
+            ref={mobileMenuRef}
+            className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[70] animate-in slide-in-from-top duration-300"
+          >
+            <div className="container-luxury py-6">
+              <nav className="flex flex-col gap-1">
               {/* Home Icon - Only show on non-home pages */}
               {!isHomePage && (
                 <a
@@ -291,9 +311,10 @@ const Header = ({ language }: HeaderProps) => {
                 <Phone className="w-5 h-5" strokeWidth={2.5} />
                 <span>0536 647 48 10</span>
               </a>
-            </nav>
+              </nav>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

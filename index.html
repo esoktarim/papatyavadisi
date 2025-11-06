@@ -36,6 +36,19 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" />
     </noscript>
+    
+    <!-- Async CSS loading script - Prevents render blocking -->
+    <script>
+      // Function to load CSS asynchronously
+      function loadCSS(href) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.media = 'print';
+        link.onload = function() { this.media = 'all'; };
+        document.head.appendChild(link);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
