@@ -91,6 +91,8 @@ const Header = ({ language }: HeaderProps) => {
               src={logo} 
               alt="Papatya Vadisi" 
               className="h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 w-auto object-contain"
+              width="200"
+              height="80"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
