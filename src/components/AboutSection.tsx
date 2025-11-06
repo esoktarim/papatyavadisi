@@ -191,7 +191,7 @@ const AboutSection = ({ language }: AboutSectionProps) => {
                       <Icon className="w-5 h-5 text-[#C7A664] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <h4 className="font-medium text-[#2C2416] mb-1 text-sm tracking-wide uppercase" style={{ letterSpacing: '0.05em' }}>{value.title}</h4>
+                      <h3 className="font-medium text-[#2C2416] mb-1 text-sm tracking-wide uppercase" style={{ letterSpacing: '0.05em' }}>{value.title}</h3>
                       <p className="text-sm text-[#6B675F] font-light leading-relaxed">{value.description}</p>
                     </div>
                   </div>
