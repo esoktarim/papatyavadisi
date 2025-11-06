@@ -88,14 +88,13 @@ nssm status PapatyavadisiBackend
 
 ### Yöntem 3: Hosting Platform'ları
 
-#### Railway.app:
-1. Railway hesabı oluşturun
-2. GitHub repo'yu bağlayın
-3. `server` klasörünü root olarak ayarlayın
-4. Environment variables ekleyin:
+#### Vercel (Önerilen):
+1. [vercel.com](https://vercel.com) → GitHub ile giriş
+2. Import Project → Repo seç
+3. Environment Variables ekle:
    - `EMAIL_USER`
    - `EMAIL_PASS`
-   - `PORT`
+4. Backend `api/` klasöründeki serverless functions olarak otomatik deploy edilir
 
 #### Render.com:
 1. Render hesabı oluşturun
