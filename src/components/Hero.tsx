@@ -96,8 +96,7 @@ const Hero = ({ language }: HeroProps) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           willChange: 'auto',
-          imageRendering: 'auto',
-          WebkitImageRendering: 'auto'
+          imageRendering: 'auto'
         }}
       >
         {/* Fallback img for better SEO and accessibility */}
