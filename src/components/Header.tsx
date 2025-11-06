@@ -176,12 +176,12 @@ const Header = ({ language }: HeaderProps) => {
 
           {/* Right Side: Mobile Menu Button & Phone */}
           <div className="flex items-center gap-3 md:gap-4">
-            {/* Phone - Modern Button Style */}
+            {/* Phone */}
             <a
               href="tel:+905366474810"
-              className="hidden md:flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-[#C7A664] to-[#B89654] text-white font-semibold text-[15px] tracking-tight shadow-lg shadow-[#C7A664]/25 hover:shadow-xl hover:shadow-[#C7A664]/30 hover:scale-105 transition-all duration-300 group"
+              className="hidden md:flex items-center gap-2 text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
             >
-              <Phone className="w-4.5 h-4.5 group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+              <Phone className="w-4 h-4" />
               <span>0536 647 48 10</span>
             </a>
 
