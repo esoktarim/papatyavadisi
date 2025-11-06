@@ -248,7 +248,6 @@ const AboutSection = ({ language }: AboutSectionProps) => {
                   src={projectVertical}
                   alt={language === "tr" ? "Papatya Vadisi Dikey Görsel" : "Papatya Vadisi Vertical Image"}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                  loading="lazy"
                   decoding="async"
                 />
               </div>
