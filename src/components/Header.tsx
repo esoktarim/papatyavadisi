@@ -49,18 +49,6 @@ const Header = ({ language }: HeaderProps) => {
     };
   }, [isProjectsDropdownOpen, isMobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
-
   const menuItems = {
     tr: [
       { label: "Kurumsal", path: "/kurumsal", hasDropdown: false },
@@ -87,15 +75,11 @@ const Header = ({ language }: HeaderProps) => {
     ],
   };
 
-  // Header always has light background as per design
-  const headerBg = "bg-white/98 backdrop-blur-xl border-b border-slate-100 shadow-sm";
   const isHomePage = location.pathname === "/";
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-100 shadow-sm transition-all duration-300">
       <div className="container-luxury">
         <nav className="flex items-center justify-between h-28 md:h-32 lg:h-36">
           {/* Logo */}
@@ -213,20 +197,12 @@ const Header = ({ language }: HeaderProps) => {
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay & Menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <>
-          {/* Backdrop Overlay */}
-          <div 
-            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-in fade-in duration-300"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          
-          {/* Mobile Menu Panel */}
-          <div 
-            ref={mobileMenuRef}
-            className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[70] animate-in slide-in-from-top duration-300"
-          >
+        <div 
+          ref={mobileMenuRef}
+          className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[60] shadow-lg"
+        >
             <div className="container-luxury py-6">
               <nav className="flex flex-col gap-1">
               {/* Home Icon - Only show on non-home pages */}
@@ -264,7 +240,7 @@ const Header = ({ language }: HeaderProps) => {
                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileProjectsDropdownOpen ? 'rotate-180' : ''}`} strokeWidth={2.5} />
                       </button>
                       {isMobileProjectsDropdownOpen && (
-                        <div className="pl-4 mt-1 space-y-0.5 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="pl-4 mt-1 space-y-0.5 transition-all duration-200">
                           {projectOptions[language].map((option) => (
                             <a
                               key={option.path}
@@ -314,7 +290,6 @@ const Header = ({ language }: HeaderProps) => {
               </nav>
             </div>
           </div>
-        </>
       )}
     </header>
   );
