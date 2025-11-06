@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/1.png";
+import heroImage from "@/assets/11.png";
 import CallBackModal from "@/components/CallBackModal";
-
-// Use public path for instant loading (bypasses Vite bundling)
-const heroImagePublic = "/hero-image.png";
 
 interface HeroProps {
   language: "tr" | "en";
@@ -15,56 +12,20 @@ const Hero = ({ language }: HeroProps) => {
   const [callBackOpen, setCallBackOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Preload hero image immediately - Critical for instant display
+  // Aggressive preload hero image immediately - Critical for instant display
   useEffect(() => {
-    // Create multiple Image objects to force aggressive preloading
-    const preloadImages = [];
-    
-    // Preload public version multiple times to ensure it's cached
-    for (let i = 0; i < 3; i++) {
+    // Preload bundled version multiple times to ensure it's cached
+    for (let i = 0; i < 5; i++) {
       const img = new Image();
-      img.src = heroImagePublic;
+      img.src = heroImage;
       img.fetchPriority = "high";
-      preloadImages.push(img);
     }
     
-    // Also preload bundled version as backup
-    const fallbackImg = new Image();
-    fallbackImg.src = heroImage;
-    fallbackImg.fetchPriority = "high";
-    preloadImages.push(fallbackImg);
-    
-    // Force browser to cache all images immediately
-    preloadImages.forEach(img => {
-      img.onload = () => {
-        // Image cached and ready
-      };
-      
-      img.onerror = () => {
-        // Fallback handling
-        if (img.src !== heroImage) {
-          const fallback = new Image();
-          fallback.src = heroImage;
-          fallback.fetchPriority = "high";
-        }
-      };
-    });
-    
-    // Also use link preload as additional method
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = heroImagePublic;
-    link.setAttribute('fetchpriority', 'high');
-    document.head.appendChild(link);
-    
-    return () => {
-      // Cleanup
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
-    };
-  }, []);
+    // Also preload public version as backup
+    const publicImg = new Image();
+    publicImg.src = "/hero-image.png";
+    publicImg.fetchPriority = "high";
+  }, [heroImage]);
 
   const content = {
     tr: {
@@ -90,7 +51,7 @@ const Hero = ({ language }: HeroProps) => {
       {/* Background Image - Use img tag directly for instant, non-progressive loading */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src={heroImagePublic}
+          src={heroImage}
           alt="Luxury Architecture"
           className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
@@ -102,8 +63,9 @@ const Hero = ({ language }: HeroProps) => {
           }}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            if (target.src !== heroImage) {
-              target.src = heroImage;
+            // Try public version as fallback
+            if (!target.src.includes('/hero-image.png')) {
+              target.src = "/hero-image.png";
             }
           }}
         />

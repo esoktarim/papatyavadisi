@@ -7,7 +7,7 @@ import Projects from "@/components/Projects";
 import FeaturedProject from "@/components/FeaturedProject";
 import Footer from "@/components/Footer";
 import StickyButtons from "@/components/StickyButtons";
-import heroImage from "@/assets/1.png";
+import heroImage from "@/assets/11.png";
 
 interface IndexProps {
   language: "tr" | "en";
@@ -15,26 +15,20 @@ interface IndexProps {
 }
 
 const Index = ({ language, onLanguageChange }: IndexProps) => {
-  // Preload hero image immediately when page loads - Critical for instant display
+  // Aggressive preload hero image immediately when page loads - Critical for instant display
   useEffect(() => {
-    // Preload public version first (bypasses Vite bundling)
-    const img1 = new Image();
-    img1.src = "/hero-image.png";
-    img1.fetchPriority = "high";
+    // Preload bundled version (11.png) multiple times for aggressive caching
+    for (let i = 0; i < 3; i++) {
+      const img = new Image();
+      img.src = heroImage;
+      img.fetchPriority = "high";
+    }
     
-    // Also preload bundled version as backup
-    const img2 = new Image();
-    img2.src = heroImage;
-    img2.fetchPriority = "high";
-    
-    // Force immediate loading
-    img1.onload = () => {
-      // Image ready and cached
-    };
-    img2.onload = () => {
-      // Backup image ready and cached
-    };
-  }, []);
+    // Also preload public version as backup
+    const publicImg = new Image();
+    publicImg.src = "/hero-image.png";
+    publicImg.fetchPriority = "high";
+  }, [heroImage]);
 
   return (
     <div className="min-h-screen">

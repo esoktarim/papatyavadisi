@@ -8,8 +8,7 @@ interface HeaderProps {
   onLanguageChange: (lang: "tr" | "en") => void;
 }
 
-const Header = ({ language, onLanguageChange }: HeaderProps) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const Header = ({ language }: HeaderProps) => {
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const [isMobileProjectsDropdownOpen, setIsMobileProjectsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,16 +26,6 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
     const publicLogoImg = new Image();
     publicLogoImg.src = "/logo.png";
     publicLogoImg.fetchPriority = "high";
-  }, []);
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Close dropdown when clicking outside
