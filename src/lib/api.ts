@@ -1,7 +1,8 @@
 // Vite proxy kullanıyorsa, development'ta /api kullan
 // Production'da VITE_API_URL environment variable kullan
+// Eğer VITE_API_URL yoksa ve production'daysa, backend server URL'ini kullan
 const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.DEV ? "" : "http://localhost:3001");
+  (import.meta.env.DEV ? "" : undefined);
 
 export interface ContactFormData {
   project?: string;
