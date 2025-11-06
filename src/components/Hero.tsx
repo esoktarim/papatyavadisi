@@ -87,27 +87,19 @@ const Hero = ({ language }: HeroProps) => {
 
   return (
     <section className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '145px' }}>
-      {/* Background Image - Instant display using CSS background for better performance */}
-      <div 
-        className="absolute inset-0 z-0 overflow-hidden"
-        style={{
-          backgroundImage: `url(${heroImagePublic})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          willChange: 'auto',
-          imageRendering: 'auto'
-        }}
-      >
-        {/* Fallback img for better SEO and accessibility */}
+      {/* Background Image - Use img tag directly for instant, non-progressive loading */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src={heroImagePublic}
           alt="Luxury Architecture"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-0 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
           loading="eager"
           decoding="sync"
-          aria-hidden="true"
+          style={{
+            willChange: 'auto',
+            imageRendering: 'auto'
+          }}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             if (target.src !== heroImage) {

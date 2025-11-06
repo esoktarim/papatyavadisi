@@ -17,6 +17,18 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
+  // Preload logo immediately for instant display
+  useEffect(() => {
+    const logoImg = new Image();
+    logoImg.src = logo;
+    logoImg.fetchPriority = "high";
+    
+    // Also preload public version
+    const publicLogoImg = new Image();
+    publicLogoImg.src = "/logo.png";
+    publicLogoImg.fetchPriority = "high";
+  }, []);
+
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -90,6 +102,9 @@ const Header = ({ language, onLanguageChange }: HeaderProps) => {
               src={logo} 
               alt="Papatya Vadisi" 
               className="h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 w-auto object-contain"
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
             />
           </a>
 
