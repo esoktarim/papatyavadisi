@@ -80,8 +80,8 @@ const Hero = ({ language }: HeroProps) => {
       </div>
 
       {/* CTAs - At bottom where scroll indicator was */}
-      <div className="absolute bottom-12 sm:bottom-16 md:bottom-24 lg:bottom-32 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 sm:gap-4 animate-fade-in">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="absolute bottom-12 sm:bottom-16 md:bottom-24 lg:bottom-32 left-0 right-0 z-10 flex flex-col items-center px-4 animate-fade-in">
+        <div className="flex w-full max-w-md flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
             variant="hero" 
             size="xl" 

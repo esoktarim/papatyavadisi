@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Phone, ChevronDown, Home, Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
 
 interface HeaderProps {
   language: "tr" | "en";
@@ -15,17 +14,14 @@ const Header = ({ language }: HeaderProps) => {
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   // Preload logo immediately for instant display
   useEffect(() => {
+    const logoPath = "/logo.png";
     const logoImg = new Image();
-    logoImg.src = logo;
+    logoImg.src = logoPath;
     logoImg.fetchPriority = "high";
-    
-    // Also preload public version
-    const publicLogoImg = new Image();
-    publicLogoImg.src = "/logo.png";
-    publicLogoImg.fetchPriority = "high";
   }, []);
 
   // Close dropdown when clicking outside
@@ -35,6 +31,9 @@ const Header = ({ language }: HeaderProps) => {
         setIsProjectsDropdownOpen(false);
       }
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        if (mobileMenuButtonRef.current && mobileMenuButtonRef.current.contains(event.target as Node)) {
+          return;
+        }
         setIsMobileMenuOpen(false);
         setIsMobileProjectsDropdownOpen(false);
       }
@@ -88,7 +87,7 @@ const Header = ({ language }: HeaderProps) => {
             className="flex items-center group transition-all duration-300 hover:scale-105"
           >
             <img 
-              src={logo} 
+              src="/logo.png" 
               alt="Papatya Vadisi" 
               className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
               width="200"
@@ -183,6 +182,7 @@ const Header = ({ language }: HeaderProps) => {
 
             {/* Mobile Menu Button */}
             <button
+              ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-[#C7A664] text-slate-700 hover:text-white transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
               aria-label="Menu"
