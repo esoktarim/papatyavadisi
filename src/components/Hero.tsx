@@ -85,7 +85,7 @@ const Hero = ({ language }: HeroProps) => {
           <Button 
             variant="hero" 
             size="xl" 
-            className="min-w-[200px] bg-[#C7A664] text-white hover:bg-[#B89654] border-none"
+            className="min-w-[200px] bg-[#C7A664] text-white hover:bg-[#B89654] border-none transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             onClick={() => navigate("/projeler")}
           >
             {t.primaryCta}
@@ -93,7 +93,7 @@ const Hero = ({ language }: HeroProps) => {
           <Button 
             variant="gold" 
             size="xl" 
-            className="min-w-[200px] bg-transparent border-2 border-[#C7A664] text-white hover:bg-[#C7A664]"
+            className="min-w-[200px] bg-transparent border-2 border-[#C7A664] text-white hover:bg-[#C7A664] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             onClick={() => setCallBackOpen(true)}
           >
             {t.secondaryCta}

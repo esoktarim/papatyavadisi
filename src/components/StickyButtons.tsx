@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Building2, X, Share2 } from "lucide-react";
 
@@ -8,54 +8,12 @@ interface StickyButtonsProps {
 
 const StickyButtons = ({ language }: StickyButtonsProps) => {
   const [socialOpen, setSocialOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const location = useLocation();
   
   // Sadece ana sayfada (/) göster
   if (location.pathname !== "/") {
     return null;
   }
-
-  // Hero section görünürlüğünü kontrol et - Optimized to prevent forced reflow
-  useEffect(() => {
-    let rafId: number | null = null;
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        rafId = window.requestAnimationFrame(() => {
-          const heroSection = document.querySelector('section[class*="h-screen"]');
-          if (heroSection) {
-            // Batch DOM reads together to prevent forced reflow
-            const rect = heroSection.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            // Hero section ekranda görünürken butonları göster
-            setIsVisible(rect.top >= -100 && rect.bottom > viewportHeight * 0.3);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // İlk yüklemede kontrol et - requestAnimationFrame ile
-    rafId = window.requestAnimationFrame(() => {
-      const heroSection = document.querySelector('section[class*="h-screen"]');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        setIsVisible(rect.top >= -100 && rect.bottom > viewportHeight * 0.3);
-      }
-    });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-    };
-  }, []);
 
   const content = {
     tr: {
@@ -83,11 +41,6 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
     phone: "tel:+905366474810",
     telegram: "https://t.me/papatyavadisi", // Telegram linkinizi buraya ekleyin
   };
-
-  // Hero section görünür değilse butonları gizle
-  if (!isVisible) {
-    return null;
-  }
 
   return (
     <>
