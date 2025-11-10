@@ -172,7 +172,7 @@ const Header = ({ language }: HeaderProps) => {
     "relative flex items-center min-h-[48px] px-5 text-[15px] font-medium leading-[1.5] tracking-[0.01em] text-[#3A2E1F] transition-all duration-200 active:bg-[#F5E7CC]/70 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A664]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-100 shadow-sm transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[70] bg-white border-b border-slate-100 shadow-sm transition-all duration-300">
       <div className="container-luxury">
         <nav className="flex items-center justify-between h-28 md:h-32 lg:h-36">
           {/* Logo */}
