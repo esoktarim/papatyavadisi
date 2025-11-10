@@ -203,13 +203,7 @@ const Header = ({ language }: HeaderProps) => {
           className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[60] shadow-xl"
         >
             <div className="container-luxury py-6">
-              <div className="flex items-center justify-end mb-4">
-                <a href="tel:+905366474810" className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-[#C7A664] transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span>0536 647 48 10</span>
-                </a>
-              </div>
-              <nav className="flex flex-col gap-1 divide-y divide-[#E6D7B8]/80 rounded-2xl bg-gradient-to-br from-white via-white to-[#F8F0E1] shadow-sm shadow-slate-900/5">
+              <nav className="flex flex-col overflow-hidden rounded-2xl border border-[#E6D7B8]/70 bg-white shadow-lg shadow-slate-900/8">
               {/* Home Icon - Only show on non-home pages */}
               {!isHomePage && (
                 <a
@@ -217,8 +211,8 @@ const Header = ({ language }: HeaderProps) => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 transition-all duration-200 ${
                     isActive('/')
-                      ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                      : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
+                      ? 'bg-[#F7EEDB] text-[#C7A664]'
+                      : 'hover:bg-[#FCF6EA] hover:text-[#C7A664] text-[#2F2412]'
                   }`}
                 >
                   <Home className="w-5 h-5" strokeWidth={2.5} />
@@ -235,17 +229,17 @@ const Header = ({ language }: HeaderProps) => {
                           e.stopPropagation();
                           setIsMobileProjectsDropdownOpen(!isMobileProjectsDropdownOpen);
                         }}
-                        className={`flex items-center justify-between px-4 py-3 transition-all duration-200 w-full text-left ${
+                        className={`flex items-center justify-between px-4 py-3 transition-all duration-200 w-full text-left border-t border-[#F0E2C6]/70 ${
                           isMobileProjectsDropdownOpen
-                            ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                            : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
+                            ? 'bg-[#F7EEDB] text-[#C7A664]'
+                            : 'hover:bg-[#FCF6EA] hover:text-[#C7A664] text-[#2F2412]'
                         }`}
                       >
                         <span className="font-semibold text-sm">{item.label}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileProjectsDropdownOpen ? 'rotate-180' : ''}`} strokeWidth={2.5} />
                       </button>
                       {isMobileProjectsDropdownOpen && (
-                        <div className="pl-4 py-1 space-y-0.5 transition-all duration-200 bg-[#F4E9D4]/60 rounded-xl">
+                        <div className="pl-4 py-1 space-y-0.5 transition-all duration-200 bg-[#FBF4E5]">
                           {projectOptions[language].map((option) => (
                             <a
                               key={option.path}
@@ -255,7 +249,7 @@ const Header = ({ language }: HeaderProps) => {
                                 setIsMobileProjectsDropdownOpen(false);
                                 setIsMobileMenuOpen(false);
                               }}
-                              className="block px-4 py-2.5 text-[#3B2F1F] hover:bg-white/70 hover:text-[#C7A664] transition-all duration-200 text-sm font-medium tracking-tight"
+                              className="block px-4 py-2.5 text-[#3B2F1F] hover:bg-white hover:text-[#C7A664] transition-all duration-200 text-sm font-medium tracking-tight"
                             >
                               {option.label}
                             </a>
@@ -273,10 +267,10 @@ const Header = ({ language }: HeaderProps) => {
                       e.stopPropagation();
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`px-4 py-3 transition-all duration-200 font-semibold text-sm ${
+                    className={`px-4 py-3 transition-all duration-200 font-semibold text-sm border-t border-[#F0E2C6]/70 ${
                       isActive(item.path)
-                        ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                        : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
+                        ? 'bg-[#F7EEDB] text-[#C7A664]'
+                        : 'hover:bg-[#FCF6EA] hover:text-[#C7A664] text-[#2F2412]'
                     }`}
                   >
                     {item.label}
@@ -287,7 +281,7 @@ const Header = ({ language }: HeaderProps) => {
               <a
                 href="tel:+905366474810"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl bg-gradient-to-r from-[#C7A664] to-[#B89654] text-white hover:from-[#B89654] hover:to-[#A88544] transition-all duration-300 font-semibold text-sm mt-2 shadow-lg shadow-[#C7A664]/25"
+                className="flex items-center justify-center gap-3 px-4 py-3.5 bg-gradient-to-r from-[#C7A664] to-[#B89654] text-white hover:from-[#B89654] hover:to-[#A88544] transition-all duration-300 font-semibold text-sm border-t border-[#E6D7B8]/70"
               >
                 <Phone className="w-5 h-5" strokeWidth={2.5} />
                 <span>0536 647 48 10</span>
