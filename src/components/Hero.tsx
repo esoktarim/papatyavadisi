@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/11.png";
 import CallBackModal from "@/components/CallBackModal";
+import { PhoneCall } from "lucide-react";
 
 interface HeroProps {
   language: "tr" | "en";
@@ -93,10 +94,14 @@ const Hero = ({ language }: HeroProps) => {
           <Button 
             variant="gold" 
             size="xl" 
-            className="min-w-[200px] bg-transparent border-2 border-[#C7A664] text-white hover:bg-[#C7A664]"
+            className="group relative min-w-[220px] overflow-hidden rounded-full border border-white/40 bg-gradient-to-r from-[#FDF5E4] via-[#F7E2B8] to-[#E7BF74] text-[#2F2412] font-semibold shadow-[0_18px_35px_rgba(199,166,100,0.35)] transition-all duration-300 hover:shadow-[0_22px_45px_rgba(168,133,68,0.45)] hover:-translate-y-0.5"
             onClick={() => setCallBackOpen(true)}
           >
-            {t.secondaryCta}
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/25" />
+            <span className="relative flex items-center justify-center gap-2 tracking-tight">
+              <PhoneCall className="w-5 h-5" />
+              {t.secondaryCta}
+            </span>
           </Button>
         </div>
       </div>
