@@ -277,7 +277,7 @@ const Header = ({ language }: HeaderProps) => {
             <button
               ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-11 h-11 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#EFF3FB] via-[#E7ECF7] to-[#DDE5F4] text-[#1F2A44] hover:from-[#E2E9F8] hover:via-[#D6E0F4] hover:to-[#CBD6EE] transition-all duration-300 hover:scale-110 shadow-md shadow-[#1F2A44]/10 hover:shadow-lg"
+              className="md:hidden w-11 h-11 flex items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#1F2533] via-[#222A38] to-[#181E29] text-[#F5EEDB] transition-all duration-300 hover:from-[#232B3A] hover:via-[#1C2330] hover:to-[#141822] hover:-translate-y-0.5 shadow-lg shadow-[rgba(20,24,34,0.35)] hover:shadow-[0_18px_28px_rgba(20,24,34,0.45)]"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-panel"
               aria-haspopup="dialog"
