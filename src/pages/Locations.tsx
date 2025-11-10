@@ -2,7 +2,7 @@ import { MapPin, Navigation, Car, Train, Plane } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import konumImage from "@/assets/konum.webp";
-import heroImage from "@/assets/1.png";
+import heroImage from "@/assets/11.png";
 
 interface LocationsProps {
   language: "tr" | "en";
