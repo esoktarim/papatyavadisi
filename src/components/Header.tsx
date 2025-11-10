@@ -18,7 +18,7 @@ const Header = ({ language }: HeaderProps) => {
 
   // Preload logo immediately for instant display
   useEffect(() => {
-    const logoPath = "/logo.png";
+    const logoPath = "/logo.webp";
     const logoImg = new Image();
     logoImg.src = logoPath;
     logoImg.fetchPriority = "high";
@@ -87,7 +87,7 @@ const Header = ({ language }: HeaderProps) => {
             className="flex items-center group transition-all duration-300 hover:scale-105"
           >
             <img 
-              src="/logo.png" 
+              src="/logo.webp" 
               alt="Papatya Vadisi" 
               className="h-[70px] sm:h-[84px] md:h-[96px] lg:h-[108px] xl:h-[120px] w-auto object-contain transition-all duration-300 group-hover:opacity-90"
               width="215"

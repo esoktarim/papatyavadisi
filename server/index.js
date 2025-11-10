@@ -84,20 +84,26 @@ const createTransporter = async () => {
 
 // Helper function to get logo as base64
 const getLogoBase64 = () => {
-  try {
-    const logoPath = path.join(__dirname, '..', 'logo.png');
-    if (fs.existsSync(logoPath)) {
-      const logoBuffer = fs.readFileSync(logoPath);
-      const logoBase64 = logoBuffer.toString('base64');
-      return `data:image/png;base64,${logoBase64}`;
-    } else {
-      console.warn("⚠️ Logo file not found at:", logoPath);
-      return null;
+  const logoCandidates = [
+    { filename: "logo.webp", mime: "image/webp" },
+    { filename: "logo.png", mime: "image/png" },
+  ];
+
+  for (const candidate of logoCandidates) {
+    try {
+      const logoPath = path.join(__dirname, "..", candidate.filename);
+      if (fs.existsSync(logoPath)) {
+        const logoBuffer = fs.readFileSync(logoPath);
+        const logoBase64 = logoBuffer.toString("base64");
+        return `data:${candidate.mime};base64,${logoBase64}`;
+      }
+    } catch (error) {
+      console.error("❌ Error reading logo file:", error.message);
     }
-  } catch (error) {
-    console.error("❌ Error reading logo file:", error.message);
-    return null;
   }
+
+  console.warn("⚠️ Logo file not found for any supported format (logo.webp, logo.png)");
+  return null;
 };
 
 // Helper function to create email templates
