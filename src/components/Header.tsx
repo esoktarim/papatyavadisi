@@ -89,9 +89,9 @@ const Header = ({ language }: HeaderProps) => {
             <img 
               src="/logo.png" 
               alt="Papatya Vadisi" 
-              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
-              width="200"
-              height="80"
+              className="h-[70px] sm:h-[84px] md:h-[96px] lg:h-[108px] xl:h-[120px] w-auto object-contain transition-all duration-300 group-hover:opacity-90"
+              width="215"
+              height="88"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
@@ -99,7 +99,7 @@ const Header = ({ language }: HeaderProps) => {
           </a>
 
           {/* Navigation Menu */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+          <div className="hidden md:flex items-center gap-3 lg:gap-4">
             {/* Home Icon - Only show on non-home pages */}
             {!isHomePage && (
               <a
@@ -117,10 +117,10 @@ const Header = ({ language }: HeaderProps) => {
                   <div key={item.path} className="relative" ref={dropdownRef}>
                     <button
                       onClick={() => setIsProjectsDropdownOpen(!isProjectsDropdownOpen)}
-                      className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl text-[15px] font-semibold tracking-tight transition-all duration-300 ${
+                      className={`group relative flex items-center gap-2 px-5 py-3 rounded-xl text-[16px] font-semibold tracking-tight transition-all duration-300 ${
                         isProjectsDropdownOpen
-                          ? 'text-[#C7A664] bg-[#C7A664]/8'
-                          : 'text-slate-800 hover:text-[#C7A664] hover:bg-slate-50/80'
+                          ? 'text-[#C7A664] bg-[#C7A664]/12 shadow-inner shadow-[#C7A664]/10'
+                          : 'text-[#2F2412] hover:text-[#C7A664]'
                       }`}
                     >
                       <span className="relative">{item.label}</span>
@@ -131,17 +131,16 @@ const Header = ({ language }: HeaderProps) => {
                       )}
                     </button>
                     {isProjectsDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-3 w-60 bg-white/98 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200/60 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#C7A664]/5 to-transparent pointer-events-none"></div>
+                      <div className="absolute top-full left-0 mt-3 w-64 rounded-2xl shadow-2xl shadow-slate-900/15 border border-[#DCC9A4]/70 border-t-4 border-t-[#C7A664] py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200 transition-transform transform origin-top bg-gradient-to-br from-white via-white to-[#F8F0E1] backdrop-blur-md">
                         {projectOptions[language].map((option) => (
                           <a
                             key={option.path}
                             href={option.path}
                             onClick={() => setIsProjectsDropdownOpen(false)}
-                            className="relative block px-6 py-3 text-[14px] font-medium text-slate-700 hover:text-[#C7A664] hover:bg-[#C7A664]/5 transition-all duration-200 group"
+                            className="relative block px-6 py-3 text-[14px] font-medium text-[#3B2F1F] hover:text-[#C7A664] hover:bg-white/55 transition-all duration-300 group tracking-tight"
                           >
                             <span className="relative z-10">{option.label}</span>
-                            <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#C7A664] scale-y-0 group-hover:scale-y-100 transition-transform duration-200 origin-center"></span>
+                            <span className="absolute left-6 right-6 bottom-1 h-px bg-[#E8D9BD] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                           </a>
                         ))}
                       </div>
@@ -153,10 +152,10 @@ const Header = ({ language }: HeaderProps) => {
                 <a
                   key={item.path}
                   href={item.path}
-                  className={`group relative flex items-center px-5 py-3 rounded-xl text-[15px] font-semibold tracking-tight transition-all duration-300 ${
+                  className={`group relative flex items-center px-5 py-3 rounded-xl text-[16px] font-semibold tracking-tight transition-all duration-300 ${
                     isActive(item.path)
                       ? 'text-[#C7A664]'
-                      : 'text-slate-800 hover:text-[#C7A664] hover:bg-slate-50/80'
+                      : 'text-[#2F2412] hover:text-[#C7A664]'
                   }`}
                 >
                   <span className="relative z-10">{item.label}</span>
@@ -174,7 +173,7 @@ const Header = ({ language }: HeaderProps) => {
             {/* Phone */}
             <a
               href="tel:+905366474810"
-              className="hidden md:flex items-center gap-2 text-base font-medium text-slate-700 hover:text-[#C7A664] transition-colors"
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#C7A664] via-[#B89654] to-[#A88544] text-white px-5 py-2.5 text-sm font-semibold tracking-tight shadow-md shadow-[#C7A664]/30 hover:shadow-lg hover:-translate-y-[1px] transition-all duration-300"
             >
               <Phone className="w-4 h-4" />
               <span>0536 647 48 10</span>
@@ -201,19 +200,25 @@ const Header = ({ language }: HeaderProps) => {
       {isMobileMenuOpen && (
         <div 
           ref={mobileMenuRef}
-          className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[60] shadow-lg"
+          className="md:hidden fixed top-28 left-0 right-0 bottom-0 bg-white overflow-y-auto z-[60] shadow-xl"
         >
             <div className="container-luxury py-6">
-              <nav className="flex flex-col gap-1">
+              <div className="flex items-center justify-end mb-4">
+                <a href="tel:+905366474810" className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-[#C7A664] transition-colors">
+                  <Phone className="w-4 h-4" />
+                  <span>0536 647 48 10</span>
+                </a>
+              </div>
+              <nav className="flex flex-col gap-1 divide-y divide-[#E6D7B8]/80 rounded-2xl bg-gradient-to-br from-white via-white to-[#F8F0E1] shadow-sm shadow-slate-900/5">
               {/* Home Icon - Only show on non-home pages */}
               {!isHomePage && (
                 <a
                   href="/"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-200 ${
                     isActive('/')
                       ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                      : 'hover:bg-slate-50 hover:text-[#C7A664] text-slate-700'
+                      : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
                   }`}
                 >
                   <Home className="w-5 h-5" strokeWidth={2.5} />
@@ -230,17 +235,17 @@ const Header = ({ language }: HeaderProps) => {
                           e.stopPropagation();
                           setIsMobileProjectsDropdownOpen(!isMobileProjectsDropdownOpen);
                         }}
-                        className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 w-full text-left ${
+                        className={`flex items-center justify-between px-4 py-3 transition-all duration-200 w-full text-left ${
                           isMobileProjectsDropdownOpen
                             ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                            : 'hover:bg-slate-50 hover:text-[#C7A664] text-slate-700'
+                            : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
                         }`}
                       >
                         <span className="font-semibold text-sm">{item.label}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileProjectsDropdownOpen ? 'rotate-180' : ''}`} strokeWidth={2.5} />
                       </button>
                       {isMobileProjectsDropdownOpen && (
-                        <div className="pl-4 mt-1 space-y-0.5 transition-all duration-200">
+                        <div className="pl-4 py-1 space-y-0.5 transition-all duration-200 bg-[#F4E9D4]/60 rounded-xl">
                           {projectOptions[language].map((option) => (
                             <a
                               key={option.path}
@@ -250,7 +255,7 @@ const Header = ({ language }: HeaderProps) => {
                                 setIsMobileProjectsDropdownOpen(false);
                                 setIsMobileMenuOpen(false);
                               }}
-                              className="block px-4 py-2.5 rounded-lg hover:bg-[#C7A664]/10 hover:text-[#C7A664] transition-all duration-200 text-slate-600 text-sm font-medium"
+                              className="block px-4 py-2.5 text-[#3B2F1F] hover:bg-white/70 hover:text-[#C7A664] transition-all duration-200 text-sm font-medium tracking-tight"
                             >
                               {option.label}
                             </a>
@@ -268,10 +273,10 @@ const Header = ({ language }: HeaderProps) => {
                       e.stopPropagation();
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`px-4 py-3 rounded-xl transition-all duration-200 font-semibold text-sm ${
+                    className={`px-4 py-3 transition-all duration-200 font-semibold text-sm ${
                       isActive(item.path)
                         ? 'bg-[#C7A664]/10 text-[#C7A664]'
-                        : 'hover:bg-slate-50 hover:text-[#C7A664] text-slate-700'
+                        : 'hover:bg-[#F4E9D4] hover:text-[#C7A664] text-[#2F2412]'
                     }`}
                   >
                     {item.label}
