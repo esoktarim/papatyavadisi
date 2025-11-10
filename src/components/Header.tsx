@@ -277,13 +277,13 @@ const Header = ({ language }: HeaderProps) => {
             <button
               ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden relative z-[95] w-11 h-11 flex items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#1F2533] via-[#222A38] to-[#181E29] text-[#F5EEDB] transition-all duration-300 hover:from-[#232B3A] hover:via-[#1C2330] hover:to-[#141822] hover:-translate-y-0.5 shadow-lg shadow-[rgba(20,24,34,0.35)] hover:shadow-[0_18px_28px_rgba(20,24,34,0.45)]"
+              className="group md:hidden relative z-[95] w-11 h-11 flex items-center justify-center rounded-2xl border border-[#293345]/80 bg-gradient-to-br from-[#111726] via-[#1C2435] to-[#0B1019] text-[#F8ECD4] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_18px_28px_rgba(12,16,25,0.55)] hover:shadow-[0_22px_34px_rgba(15,20,30,0.6)] after:absolute after:inset-[1.5px] after:rounded-[18px] after:bg-white/6 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-panel"
               aria-haspopup="dialog"
               aria-label="Menu"
             >
-              <Menu className="w-5 h-5 transition-transform duration-300" strokeWidth={2.5} />
+              <Menu className="relative w-5 h-5 text-[#F8ECD4] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FFF6DD]" strokeWidth={2.5} />
             </button>
           </div>
         </nav>

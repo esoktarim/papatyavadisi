@@ -108,17 +108,17 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
 
         <button
           onClick={() => setSocialOpen(!socialOpen)}
-          className={`group relative rounded-full w-12 h-12 shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center overflow-hidden border border-white/10 ${
+          className={`group relative rounded-full w-12 h-12 shadow-[0_16px_28px_rgba(12,16,25,0.45)] hover:shadow-[0_20px_36px_rgba(12,16,25,0.6)] transition-all duration-300 flex items-center justify-center overflow-hidden border border-[#2A3244]/80 after:absolute after:inset-[1.5px] after:rounded-full after:bg-white/8 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100 ${
             socialOpen
-              ? "bg-gradient-to-br from-gray-700 to-gray-900 rotate-45"
-              : "bg-gradient-to-br from-[#1A1E28] via-[#252A35] to-[#1A1E28] text-[#F5EEDB] hover:from-[#232A39] hover:via-[#1F2430] hover:to-[#151A24]"
+              ? "bg-gradient-to-br from-[#1A2334] via-[#111826] to-[#080C13] text-[#F8ECD4] rotate-45"
+              : "bg-gradient-to-br from-[#111726] via-[#1C2435] to-[#0B1019] text-[#F8ECD4] hover:from-[#162033] hover:via-[#101725] hover:to-[#080C14]"
           }`}
           aria-label={t.socialMedia}
         >
           {socialOpen ? (
-            <X className="w-6 h-6 text-white transition-transform z-10" strokeWidth="2.5" />
+            <X className="w-6 h-6 text-[#F8ECD4] transition-transform z-10" strokeWidth="2.5" />
           ) : (
-            <Share2 className="w-6 h-6 text-white transition-transform z-10" strokeWidth="2.5" />
+            <Share2 className="w-6 h-6 text-[#F8ECD4] transition-transform z-10 group-hover:scale-110 group-hover:text-[#FFF6DD]" strokeWidth="2.5" />
           )}
         </button>
 
@@ -137,11 +137,11 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
           aria-label={t.socialMedia}
         >
           {socialOpen ? (
-            <X className="w-6 h-6 md:w-7 md:h-7 text-white transition-transform z-10" strokeWidth="2.5" />
+            <X className="w-6 h-6 md:w-7 md:h-7 text-[#F8ECD4] transition-transform z-10" strokeWidth="2.5" />
           ) : (
             <div className="relative flex items-center justify-center">
               {/* Share/Social Media Icon */}
-              <Share2 className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform z-10" strokeWidth="2.5" />
+              <Share2 className="w-7 h-7 md:w-8 md:h-8 text-[#F8ECD4] group-hover:scale-110 group-hover:text-[#FFF6DD] transition-transform z-10" strokeWidth="2.5" />
               {/* Decorative gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               {/* Shine effect */}
