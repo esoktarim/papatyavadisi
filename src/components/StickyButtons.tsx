@@ -108,10 +108,10 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
 
         <button
           onClick={() => setSocialOpen(!socialOpen)}
-          className={`group relative rounded-full w-12 h-12 shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center overflow-hidden ${
+          className={`group relative rounded-full w-12 h-12 shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center overflow-hidden border border-white/10 ${
             socialOpen
               ? "bg-gradient-to-br from-gray-700 to-gray-900 rotate-45"
-              : "bg-gradient-to-br from-[#C7A664] via-[#B89654] to-[#A88544] hover:from-[#D4B674] hover:via-[#C7A664] hover:to-[#B89654]"
+              : "bg-gradient-to-br from-[#1A1E28] via-[#252A35] to-[#1A1E28] text-[#F5EEDB] hover:from-[#232A39] hover:via-[#1F2430] hover:to-[#151A24]"
           }`}
           aria-label={t.socialMedia}
         >

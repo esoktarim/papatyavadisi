@@ -172,7 +172,7 @@ const Header = ({ language }: HeaderProps) => {
     "relative flex items-center min-h-[48px] px-5 text-[15px] font-medium leading-[1.5] tracking-[0.01em] text-[#3A2E1F] transition-all duration-200 active:bg-[#F5E7CC]/70 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C7A664]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[70] bg-white border-b border-slate-100 shadow-sm transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[85] bg-white border-b border-slate-100 shadow-sm transition-all duration-300">
       <div className="container-luxury">
         <nav className="flex items-center justify-between h-28 md:h-32 lg:h-36">
           {/* Logo */}
@@ -277,17 +277,13 @@ const Header = ({ language }: HeaderProps) => {
             <button
               ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-11 h-11 flex items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#1F2533] via-[#222A38] to-[#181E29] text-[#F5EEDB] transition-all duration-300 hover:from-[#232B3A] hover:via-[#1C2330] hover:to-[#141822] hover:-translate-y-0.5 shadow-lg shadow-[rgba(20,24,34,0.35)] hover:shadow-[0_18px_28px_rgba(20,24,34,0.45)]"
+              className="md:hidden relative z-[95] w-11 h-11 flex items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#1F2533] via-[#222A38] to-[#181E29] text-[#F5EEDB] transition-all duration-300 hover:from-[#232B3A] hover:via-[#1C2330] hover:to-[#141822] hover:-translate-y-0.5 shadow-lg shadow-[rgba(20,24,34,0.35)] hover:shadow-[0_18px_28px_rgba(20,24,34,0.45)]"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-panel"
               aria-haspopup="dialog"
               aria-label="Menu"
             >
-              {isMobileMenuOpen ? (
-              <X className="w-5 h-5" strokeWidth={2.5} />
-              ) : (
-              <Menu className="w-5 h-5" strokeWidth={2.5} />
-              )}
+              <Menu className="w-5 h-5 transition-transform duration-300" strokeWidth={2.5} />
             </button>
           </div>
         </nav>
@@ -317,6 +313,21 @@ const Header = ({ language }: HeaderProps) => {
                 }}
                 className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#E6D7B8]/80 bg-white shadow-xl shadow-slate-900/12"
               >
+                <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#E6D7B8]/70 bg-white/95 backdrop-blur-sm">
+                  <span className="text-[15px] font-semibold tracking-[0.04em] text-[#3A2E1F]">
+                    {language === "tr" ? "Menü" : "Menu"}
+                  </span>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsMobileProjectsDropdownOpen(false);
+                    }}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E6D7B8]/70 bg-white text-[#3A2E1F] shadow-sm shadow-slate-900/10 transition-all duration-200 hover:bg-[#F7EEDB] hover:text-[#C7A664] active:scale-95"
+                    aria-label={language === "tr" ? "Menüyü kapat" : "Close menu"}
+                  >
+                    <X className="w-4 h-4" strokeWidth={2.5} />
+                  </button>
+                </div>
                 <nav
                   className="flex flex-col"
                   aria-label={language === "tr" ? "Ana menü" : "Main menu"}
