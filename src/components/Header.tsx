@@ -183,13 +183,13 @@ const Header = ({ language }: HeaderProps) => {
             <button
               ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-[#C7A664] text-slate-700 hover:text-white transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
+              className="md:hidden w-11 h-11 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#EFF3FB] via-[#E7ECF7] to-[#DDE5F4] text-[#1F2A44] hover:from-[#E2E9F8] hover:via-[#D6E0F4] hover:to-[#CBD6EE] transition-all duration-300 hover:scale-110 shadow-md shadow-[#1F2A44]/10 hover:shadow-lg"
               aria-label="Menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5" strokeWidth={2.5} />
+              <X className="w-5 h-5" strokeWidth={2.5} />
               ) : (
-                <Menu className="w-5 h-5" strokeWidth={2.5} />
+              <Menu className="w-5 h-5" strokeWidth={2.5} />
               )}
             </button>
           </div>
