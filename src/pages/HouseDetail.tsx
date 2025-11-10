@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { 
   MapPin, Bed, Home, Ruler, ChevronLeft, ChevronRight, 
-  Share2, Heart, Bath, Phone, Mail, MessageCircle
+  Share2, Heart, Bath, Phone, MessageCircle
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -38,6 +38,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   const houses = {
     "cift-katli-villa": {
@@ -51,14 +52,14 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           land: "385-480 m²",
           age: "Yeni",
           floor: "2 Kat",
-          bathroom: "1 banyo üst katta 1 yarım banyo alt katta",
+          bathroom: "1 banyo (üst), 1 WC (alt)",
           parking: "Var",
         },
-        description: "Doğanın kalbinde, modern mimari anlayışla tasarlanmış çift katlı villa. Ahşap lambri cephe, geniş teras ve ferah iç mekanlarıyla hayalinizdeki yaşamı sunuyor. Her detayın düşünüldüğü bu villa, konfor ve lüksü bir araya getiriyor.",
+        description: "Kadirli’de yer alan Papatya Vadisi Çift Katlı Villa, doğanın kalbinde modern çizgilerle yükselir. Ahşap lambri cephesi, geniş terası ve ferah planı ile aile yaşamını ayrıcalıklı kılar. 24 ay %0 faiz avantajı ve özenli peyzajıyla projeye prestij katıyor. Akıllı depolama ve yüksek tavan detayları ise her gününüzü konforlu geçirmenizi sağlar.",
         details: {
           genel: [
             { label: "Oda Sayısı", value: "3+1" },
-            { label: "Banyo Sayısı", value: "1 banyo üst katta 1 yarım banyo alt katta" },
+            { label: "Banyo Sayısı", value: "1 banyo (üst), 1 WC (alt)" },
             { label: "Brüt Alan", value: "144 m²" },
             { label: "Net Alan", value: "120.36 m²" },
             { label: "Arsa Büyüklüğü", value: "385-480 m²" },
@@ -106,14 +107,14 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           land: "385-480 m²",
           age: "New",
           floor: "2 Floors",
-          bathroom: "1 bathroom on upper floor, 1 half bathroom on lower floor",
+          bathroom: "1 bathroom (upper), 1 WC (lower)",
           parking: "Yes",
         },
-        description: "A two-story villa designed with modern architecture in the heart of nature. Wooden paneled facade, spacious terrace and airy interiors offer your dream life. Every detail has been considered, combining comfort and luxury.",
+        description: "Papatya Vadisi Two-Story Villa in Kadirli rises with a contemporary silhouette amidst nature. The wooden facade, generous terrace and airy layout elevate everyday family life. Exclusive landscaping and the 24-month 0% interest plan add prestige to the project. Smart storage touches and lofty ceilings ensure lasting comfort.",
         details: {
           genel: [
             { label: "Room Count", value: "3+1" },
-            { label: "Bathroom Count", value: "1 bathroom on upper floor, 1 half bathroom on lower floor" },
+            { label: "Bathroom Count", value: "1 bathroom (upper), 1 WC (lower)" },
             { label: "Gross Area", value: "144 m²" },
             { label: "Net Area", value: "120.36 m²" },
             { label: "Land Size", value: "385-480 m²" },
@@ -167,14 +168,14 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           land: "407-510 m²",
           age: "Yeni",
           floor: "1 Kat",
-          bathroom: "1 banyo üst katta 1 yarım banyo alt katta",
+          
           parking: "Var",
         },
-        description: "Tek katlı villa, modern yaşamın tüm gereksinimlerini karşılayan ferah ve fonksiyonel bir tasarıma sahiptir. Ahşap lambri cephe, geniş teras ve doğal çevresiyle huzurlu bir yaşam sunar.",
+        description: "Kadirli’deki Papatya Vadisi Tek Katlı Villa, modern yaşamı tek seviyede konforla buluşturur. Ahşap lambri cephe ve geniş teras doğayla bütünleşik bir atmosfer yaratır. Geniş arsa yapısı ve özenli peyzaj günlük rutini ferahlatır. Akıllı planlı iç mekanlar ise tüm aile için pratik çözümler sunar.",
         details: {
           genel: [
             { label: "Oda Sayısı", value: "3+1" },
-            { label: "Banyo Sayısı", value: "1 banyo üst katta 1 yarım banyo alt katta" },
+            { label: "Banyo Sayısı", value: "1 banyo (üst), 1 WC (alt)" },
             { label: "Brüt Alan", value: "110 m²" },
             { label: "Net Alan", value: "97.89 m²" },
             { label: "Arsa Büyüklüğü", value: "407-510 m²" },
@@ -220,14 +221,14 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           land: "407-510 m²",
           age: "New",
           floor: "1 Floor",
-          bathroom: "1 bathroom on upper floor, 1 half bathroom on lower floor",
+          bathroom: "1 bathroom (upper), 1 WC (lower)",
           parking: "Yes",
         },
-        description: "The single-story villa features a spacious and functional design that meets all the requirements of modern living. Wooden paneled facade, spacious terrace and natural surroundings offer a peaceful life.",
+        description: "Papatya Vadisi Single-Story Villa in Kadirli gathers modern comfort on one generous level. The wooden paneled facade and expansive terrace blend the home seamlessly with nature. Spacious land parcels and curated landscaping refresh everyday routines. Smartly planned interiors deliver practical solutions for every family member.",
         details: {
           genel: [
             { label: "Room Count", value: "3+1" },
-            { label: "Bathroom Count", value: "1 bathroom on upper floor, 1 half bathroom on lower floor" },
+            { label: "Bathroom Count", value: "1 bathroom (upper), 1 WC (lower)" },
             { label: "Gross Area", value: "110 m²" },
             { label: "Net Area", value: "97.89 m²" },
             { label: "Land Size", value: "407-510 m²" },
@@ -288,13 +289,19 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
   const t = house[language];
   const allImages = [house.images.exterior, ...house.images.interior];
   const thumbnailImages = allImages.slice(0, 5);
-  const isCiftKatli = id === "cift-katli-villa";
   const borderClass = "border border-gray-200";
   const borderClassThumb = "border";
   const borderColorActive = "border-[#C7A664] ring-2 ring-[#C7A664]/20";
   const borderColorInactive = "border-gray-200 hover:border-gray-300";
   const borderTopClass = "border-t border-gray-100";
   const breadcrumbBorderClass = "border-b border-gray-100";
+  const descriptionSentences = t.description.split(/(?<=\.)\s+/);
+  const previewDescription = descriptionSentences.slice(0, 3).join(" ");
+  const remainingDescription = descriptionSentences.slice(3).join(" ");
+  const hasMoreDescription = remainingDescription.length > 0;
+  const descriptionToDisplay = showFullDescription || !hasMoreDescription ? t.description : previewDescription;
+  const phoneNumberLink = "+905366474810";
+  const whatsappLink = "https://wa.me/905366474810";
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
@@ -340,7 +347,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
       <div className="relative z-10">
       <Header language={language} onLanguageChange={onLanguageChange} />
       
-      <main className="pt-20 pb-16">
+      <main className="pt-20 pb-28 sm:pb-20">
         {/* Breadcrumb */}
         <div className={`bg-white ${breadcrumbBorderClass}`}>
           <div className="max-w-[92%] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-4 md:py-5">
@@ -510,13 +517,6 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                     <div className="text-xs text-gray-500 mb-1">{language === "tr" ? "Arsa" : "Land"}</div>
                     <div className="text-base font-semibold text-gray-900">{t.features.land}</div>
                   </div>
-                  <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-[#C7A664]/10 flex items-center justify-center mx-auto mb-2">
-                      <Bath className="w-5 h-5 text-[#C7A664]" />
-                    </div>
-                    <div className="text-xs text-gray-500 mb-1">{language === "tr" ? "Banyo" : "Bath"}</div>
-                    <div className="text-base font-semibold text-gray-900">{t.features.bathroom}</div>
-                  </div>
                 </div>
               </div>
 
@@ -525,12 +525,54 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                 <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4" style={{ letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif" }}>
                   {language === "tr" ? "Açıklama" : "Description"}
                 </h2>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-light">{t.description}</p>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-light">
+                  {descriptionToDisplay}
+                  {!showFullDescription && hasMoreDescription ? " …" : ""}
+                </p>
+                {hasMoreDescription && (
+                  <button
+                    onClick={() => setShowFullDescription((prev) => !prev)}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#C7A664] hover:text-[#B89654] transition-colors"
+                  >
+                    {showFullDescription
+                      ? (language === "tr" ? "Daha az göster" : "Show less")
+                      : (language === "tr" ? "Devamını oku" : "Read more")}
+                  </button>
+                )}
               </div>
             </div>
 
             {/* Right Column - Content */}
             <div className="space-y-6">
+              {/* Contact Card */}
+              <div className={`bg-white rounded-lg p-6 sm:p-7 md:p-8 ${borderClass} shadow-sm`}>
+                <h2 className="text-xl font-semibold text-[#2F2412] mb-2" style={{ letterSpacing: '-0.01em' }}>
+                  {language === "tr" ? "Satış Danışmanımızla Görüşün" : "Speak with Our Sales Consultant"}
+                </h2>
+                <p className="text-sm text-gray-600 mb-5 leading-relaxed">
+                  {language === "tr"
+                    ? "Sorularınızı hemen yanıtlayalım; tanıtım, kampanya ve ödeme seçeneklerini birlikte değerlendirelim."
+                    : "Let’s answer your questions instantly and review plans, campaigns, and payment options together."}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`tel:${phoneNumberLink}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#C7A664] via-[#B89654] to-[#A88544] px-6 py-3 text-sm font-semibold tracking-tight text-white shadow-[0_16px_32px_rgba(168,133,68,0.32)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_38px_rgba(168,133,68,0.42)]"
+                  >
+                    <Phone className="w-4 h-4" strokeWidth={2.5} />
+                    {language === "tr" ? "Hemen Ara" : "Call Now"}
+                  </a>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 rounded-full border border-[#C7A664]/60 bg-white px-6 py-3 text-sm font-semibold tracking-tight text-[#2F2412] transition-all duration-300 hover:bg-[#F5E7CC] hover:border-[#C7A664]"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" strokeWidth={2.5} />
+                    <span>{language === "tr" ? "Hemen Sor" : "Chat Now"}</span>
+                  </a>
+                </div>
+              </div>
 
               {/* Detailed Information Tables */}
               <div className={`bg-[#fafafa] rounded-lg p-8 ${borderClass} shadow-sm`}>
@@ -564,7 +606,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                             </div>
                             <div className="flex justify-between items-center flex-1 min-w-0">
                               <span className="text-gray-600 text-base">{item.label}</span>
-                              <span className="text-gray-900 font-medium text-base ml-4">{item.value}</span>
+                              <span className="text-[#C7A664] font-semibold text-base ml-4">{item.value}</span>
                             </div>
                           </div>
                         );
@@ -585,7 +627,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                           </div>
                           <div className="flex justify-between items-center flex-1 min-w-0">
                             <span className="text-gray-600 text-base">{item.label}</span>
-                            <span className="text-gray-900 font-medium text-base ml-4">{item.value}</span>
+                            <span className="text-[#C7A664] font-semibold text-base ml-4">{item.value}</span>
                           </div>
                         </div>
                       ))}
@@ -605,7 +647,7 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
                           </div>
                           <div className="flex justify-between items-center flex-1 min-w-0">
                             <span className="text-gray-600 text-base">{item.label}</span>
-                            <span className="text-gray-900 font-medium text-base ml-4">{item.value}</span>
+                            <span className="text-[#C7A664] font-semibold text-base ml-4">{item.value}</span>
                           </div>
                         </div>
                       ))}
@@ -621,6 +663,45 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
       </main>
 
       <Footer language={language} />
+      </div>
+      {/* Mobile CTA Bar */}
+      <div className="fixed inset-x-0 bottom-0 z-50 sm:hidden pointer-events-none">
+        <div
+          className="mx-auto flex max-w-[520px] items-center justify-between gap-3 rounded-t-3xl border border-white/20 bg-white/95 px-4 py-3 shadow-[0_-8px_30px_rgba(15,20,30,0.18)] backdrop-blur-md pointer-events-auto"
+          style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
+        >
+          <a
+            href={`tel:${phoneNumberLink}`}
+            className="flex flex-col items-center gap-1 text-[12px] font-semibold text-[#2F2412]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#C7A664] via-[#B89654] to-[#A88544] text-white shadow-lg">
+              <Phone className="w-4 h-4" strokeWidth={2.4} />
+            </div>
+            {language === "tr" ? "Ara" : "Call"}
+          </a>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-1 text-[12px] font-semibold text-[#2F2412]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg">
+              <MessageCircle className="w-4 h-4" strokeWidth={2.4} />
+            </div>
+            {language === "tr" ? "WhatsApp" : "WhatsApp"}
+          </a>
+          <a
+            href="https://maps.app.goo.gl/uZmNCA5f7TBzdN7LA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-1 text-[12px] font-semibold text-[#2F2412]"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1E28] text-white shadow-lg">
+              <MapPin className="w-4 h-4" strokeWidth={2.4} />
+            </div>
+            {language === "tr" ? "Konum Al" : "Get Map"}
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,6 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
       title: "Lokasyonlar",
       subtitle: "Stratejik konumda, doğanın kalbinde",
       hero: {
-        eyebrow: "Konum Ayrıcalığı",
         primaryCta: "Konumu İncele",
         secondaryCta: "Yol Tarifi Al",
       },
@@ -64,7 +63,6 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
       title: "Locations",
       subtitle: "Strategically located in the heart of nature",
       hero: {
-        eyebrow: "Location Privilege",
         primaryCta: "Explore Location",
         secondaryCta: "Get Directions",
       },
@@ -124,51 +122,41 @@ const Locations = ({ language, onLanguageChange }: LocationsProps) => {
             <img
               src={heroImage}
               alt="Papatya Vadisi Location"
-              className="w-full h-full object-cover object-center scale-[1.03]"
+              className="w-full h-full object-cover object-center scale-[1.02]"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0C1018]/70 via-[#0F1623]/75 to-[#0C1018]/85" />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0F1623] via-transparent to-transparent" />
-            <div className="absolute -top-10 -right-24 w-72 h-72 bg-[#C7A664]/15 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-10 -left-24 w-80 h-80 bg-[#B89654]/20 blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0C1018]/55 via-[#101724]/55 to-[#0C1018]/70" />
+            <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#101724]/90 via-transparent to-transparent" />
+            <div className="absolute -top-10 -right-24 w-64 h-64 bg-[#C7A664]/14 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-6 -left-20 w-72 h-72 bg-[#B89654]/18 blur-[130px] rounded-full pointer-events-none" />
           </div>
 
           <div className="relative z-10 container-luxury px-4">
-            <div className="mx-auto max-w-3xl text-center text-white space-y-6">
-              <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-5 py-2 backdrop-blur-sm animate-fade-up">
-                <span className="inline-block h-2 w-2 rounded-full bg-[#C7A664]" />
-                <span className="text-sm font-semibold tracking-[0.34em] uppercase text-white/80">
-                  {t.hero.eyebrow}
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-serif font-semibold leading-tight drop-shadow-xl animate-fade-up">
-                {t.title}
-              </h1>
-              <p
-                className="text-base sm:text-lg md:text-xl text-white/85 font-medium leading-relaxed"
-                style={{ animationDelay: "120ms" }}
-              >
-                {t.subtitle}
-              </p>
-              <div
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up"
-                style={{ animationDelay: "220ms" }}
-              >
-                <a
-                  href="#premium-location"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#C7A664] via-[#B89654] to-[#A88544] px-6 py-3 text-sm font-semibold tracking-tight text-white shadow-[0_18px_35px_rgba(168,133,68,0.35)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_40px_rgba(168,133,68,0.45)]"
-                >
-                  <Navigation className="w-4 h-4" strokeWidth={2.5} />
-                  {t.hero.primaryCta}
-                </a>
-                <a
-                  href="https://maps.app.goo.gl/uZmNCA5f7TBzdN7LA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold tracking-tight text-white/90 backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:text-white hover:-translate-y-0.5"
-                >
-                  <MapPin className="w-4 h-4" strokeWidth={2.5} />
-                  {t.hero.secondaryCta}
-                </a>
+            <div className="mx-auto max-w-3xl animate-fade-up">
+              <div className="relative mx-auto max-w-[560px] rounded-[28px] border border-white/18 bg-white/8 px-8 py-9 text-center text-white shadow-[0_30px_70px_rgba(9,12,19,0.45)] backdrop-blur-[16px]">
+                <h1 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[48px] font-serif font-semibold leading-tight drop-shadow-[0_20px_40px_rgba(9,12,19,0.55)]">
+                  {t.title}
+                </h1>
+                <p className="mt-3 text-base sm:text-lg md:text-xl text-white/78 font-medium leading-relaxed">
+                  {t.subtitle}
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                  <a
+                    href="#premium-location"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#C7A664] via-[#B89654] to-[#A88544] px-6 py-2.5 text-sm font-semibold tracking-tight text-white shadow-[0_16px_30px_rgba(168,133,68,0.32)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(168,133,68,0.42)]"
+                  >
+                    <Navigation className="w-4 h-4" strokeWidth={2.5} />
+                    {t.hero.primaryCta}
+                  </a>
+                  <a
+                    href="https://maps.app.goo.gl/uZmNCA5f7TBzdN7LA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/6 px-6 py-2.5 text-sm font-semibold tracking-tight text-white/85 transition-all duration-300 hover:bg-white/12 hover:text-white hover:-translate-y-0.5"
+                  >
+                    <MapPin className="w-4 h-4" strokeWidth={2.5} />
+                    {t.hero.secondaryCta}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
