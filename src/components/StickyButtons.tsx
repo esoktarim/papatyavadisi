@@ -45,7 +45,7 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
   return (
     <>
       {/* Mobile Sticky Buttons */}
-      <div className="md:hidden fixed bottom-20 right-4 z-40 flex flex-col items-end gap-3">
+      <div className="md:hidden fixed bottom-6 right-4 z-40 flex flex-col items-end gap-3">
         {socialOpen && (
           <div className="flex flex-col items-end gap-2 animate-in fade-in slide-in-from-bottom duration-300">
             <a
@@ -134,19 +134,6 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
           )}
         </button>
 
-        <button
-          onClick={() => {
-            const projectsSection = document.getElementById("satistaki-projeler");
-            if (projectsSection) {
-              projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          }}
-          className="flex items-center gap-3 bg-[#1e3a5f] hover:bg-[#1a3252] text-white rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label={t.projects}
-        >
-          <Building2 className="w-5 h-5" />
-          <span className="text-sm font-semibold">{t.projects}</span>
-        </button>
       </div>
 
       {/* Sticky Buttons - Sadece Hero bölümünde görünür */}

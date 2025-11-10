@@ -8,7 +8,6 @@ interface FeaturedProjectProps {
 const FeaturedProject = ({ language }: FeaturedProjectProps) => {
   const content = {
     tr: {
-      tag: "Öne Çıkan Proje",
       title: "Papatya Vadisi Evleri",
       description:
         "Osmaniye'nin serin Bağdaş Yaylası'nda, sedir ormanları ve temiz hava ile şehir konforunu buluşturan seçkin konutlar. Modern mimari, geniş teraslar ve doğa odaklı planlama ile sessiz, güvenli ve ayrıcalıklı bir yaşam deneyimi.",
@@ -21,7 +20,6 @@ const FeaturedProject = ({ language }: FeaturedProjectProps) => {
       ],
     },
     en: {
-      tag: "Featured Project",
       title: "Papatya Vadisi Evleri",
       description:
         "Select residences on the cool Bagdaş Plateau of Osmaniye, blending cedar forest air with city comfort. Modern architecture, wide terraces, and nature-oriented planning for a quiet, safe, and exclusive lifestyle.",
@@ -50,9 +48,6 @@ const FeaturedProject = ({ language }: FeaturedProjectProps) => {
               className="relative rounded-lg shadow-xl w-full h-[500px] object-cover"
               decoding="async"
             />
-            <div className="absolute top-6 left-6 bg-accent text-accent-foreground px-4 py-2 rounded-md font-medium text-sm">
-              {t.tag}
-            </div>
           </div>
 
           {/* Content */}
