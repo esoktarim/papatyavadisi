@@ -39,7 +39,6 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
     tiktok: "https://www.tiktok.com/@papatyavadisi0?_r=1&_t=ZS-915eo2qV85g",
     whatsapp: "https://wa.me/905366474810",
     phone: "tel:+905366474810",
-    telegram: "https://t.me/papatyavadisi", // Telegram linkinizi buraya ekleyin
   };
 
   return (
@@ -104,17 +103,6 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
               </svg>
             </a>
 
-            <a
-              href={socialLinks.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative bg-sky-500 hover:bg-sky-600 text-white rounded-full w-11 h-11 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-              aria-label="Telegram"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9.853 15.857l-.395 5.568c.564 0 .81-.242 1.105-.533l2.652-2.53 5.498 4.017c1.007.553 1.72.262 1.994-.93l3.613-16.934.001-.001c.321-1.498-.542-2.083-1.525-1.715L1.12 9.79C-.328 10.352-.306 11.18 0 11.575l4.088 1.272 9.496-5.975c.445-.303.85-.135.516.168l-7.247 6.817z"/>
-              </svg>
-            </a>
           </div>
         )}
 
