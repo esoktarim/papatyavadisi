@@ -29,11 +29,11 @@ const ScrollingBanner = ({ language }: ScrollingBannerProps) => {
     <div className="hidden md:block fixed top-32 md:top-36 left-0 right-0 z-40 bg-[#C7A664] text-white py-4 md:py-5 overflow-hidden border-b border-[#B89654]/30 shadow-sm">
       <div className="relative w-full overflow-hidden">
         <div className="flex animate-scroll-left whitespace-nowrap will-change-transform">
-          {[0, 1].map((iteration) => (
+          {[0, 1, 2].map((iteration) => (
             <div
               key={iteration}
               className="flex items-center"
-              aria-hidden={iteration === 1}
+              aria-hidden={iteration > 0}
             >
               {sequence.map((item, idx) =>
                 item.type === "text" ? (
@@ -63,7 +63,7 @@ const ScrollingBanner = ({ language }: ScrollingBannerProps) => {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-33.3333%);
           }
         }
         .animate-scroll-left {
