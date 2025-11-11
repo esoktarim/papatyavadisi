@@ -18,22 +18,42 @@ const ScrollingBanner = ({ language }: ScrollingBannerProps) => {
 
   const texts = content[language];
 
+  const sequence = [
+    { type: "text" as const, value: texts.sentence1 },
+    { type: "bullet" as const },
+    { type: "text" as const, value: texts.sentence2 },
+    { type: "bullet" as const },
+  ];
+
   return (
-    <div className="hidden md:block fixed top-32 md:top-36 left-0 right-0 z-40 bg-[#C7A664] text-white py-2.5 md:py-3 overflow-hidden border-b border-[#B89654]/30 shadow-sm">
+    <div className="hidden md:block fixed top-32 md:top-36 left-0 right-0 z-40 bg-[#C7A664] text-white py-4 md:py-5 overflow-hidden border-b border-[#B89654]/30 shadow-sm">
       <div className="relative w-full overflow-hidden">
-        <div className="flex animate-scroll-left whitespace-nowrap">
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence1}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence2}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence1}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence2}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence1}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
-          <span className="text-sm md:text-base font-medium px-8">{texts.sentence2}</span>
-          <span className="text-sm md:text-base font-medium text-white/50 mx-4">•</span>
+        <div className="flex animate-scroll-left whitespace-nowrap will-change-transform">
+          {[0, 1].map((iteration) => (
+            <div
+              key={iteration}
+              className="flex items-center"
+              aria-hidden={iteration === 1}
+            >
+              {sequence.map((item, idx) =>
+                item.type === "text" ? (
+                  <span
+                    key={`${iteration}-text-${idx}`}
+                    className="text-base md:text-lg font-medium px-10"
+                  >
+                    {item.value}
+                  </span>
+                ) : (
+                  <span
+                    key={`${iteration}-bullet-${idx}`}
+                    className="text-base md:text-lg font-medium text-white/50 mx-5"
+                  >
+                    •
+                  </span>
+                )
+              )}
+            </div>
+          ))}
         </div>
       </div>
 

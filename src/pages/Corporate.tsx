@@ -231,22 +231,22 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
     setActiveSection(sectionId);
     // Use requestAnimationFrame to batch DOM reads and prevent forced reflow
     requestAnimationFrame(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // Header ve sticky menü yüksekliğini hesaba kat
-        const headerHeight = 80; // Header yüksekliği
-        const stickyNavHeight = 60; // Sticky navigation yüksekliği
-        const offset = headerHeight + stickyNavHeight + 20; // Ekstra boşluk
-        
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Header ve sticky menü yüksekliğini hesaba kat
+      const headerHeight = 80; // Header yüksekliği
+      const stickyNavHeight = 60; // Sticky navigation yüksekliği
+      const offset = headerHeight + stickyNavHeight + 20; // Ekstra boşluk
+      
         // Batch all DOM reads together
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - offset;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
     });
   };
 
