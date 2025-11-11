@@ -329,7 +329,7 @@ const Header = ({ language }: HeaderProps) => {
             <button
               ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="group md:hidden relative z-[95] w-11 h-11 flex items-center justify-center rounded-2xl border border-[#293345]/80 bg-gradient-to-br from-[#111726] via-[#1C2435] to-[#0B1019] text-[#F8ECD4] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_18px_28px_rgba(12,16,25,0.55)] hover:shadow-[0_22px_34px_rgba(15,20,30,0.6)] after:absolute after:inset-[1.5px] after:rounded-[18px] after:bg-white/6 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100"
+            className="group md:hidden relative z-[95] w-11 h-11 flex items-center justify-center rounded-2xl border border-[#304066]/70 bg-gradient-to-br from-[#1F2F4A] via-[#243657] to-[#17253A] text-[#F8ECD4] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_16px_26px_rgba(20,36,64,0.45)] hover:shadow-[0_20px_32px_rgba(20,36,64,0.55)] after:absolute after:inset-[1.5px] after:rounded-[18px] after:bg-white/8 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-panel"
               aria-haspopup="dialog"

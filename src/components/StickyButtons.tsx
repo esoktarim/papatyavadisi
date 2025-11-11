@@ -108,11 +108,11 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
 
         <button
           onClick={() => setSocialOpen(!socialOpen)}
-          className={`group relative rounded-full w-12 h-12 shadow-[0_16px_28px_rgba(12,16,25,0.45)] hover:shadow-[0_20px_36px_rgba(12,16,25,0.6)] transition-all duration-300 flex items-center justify-center overflow-hidden border border-[#2A3244]/80 after:absolute after:inset-[1.5px] after:rounded-full after:bg-white/8 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100 ${
-            socialOpen
-              ? "bg-gradient-to-br from-[#1A2334] via-[#111826] to-[#080C13] text-[#F8ECD4] rotate-45"
-              : "bg-gradient-to-br from-[#111726] via-[#1C2435] to-[#0B1019] text-[#F8ECD4] hover:from-[#162033] hover:via-[#101725] hover:to-[#080C14]"
-          }`}
+          className={`group relative rounded-full w-12 h-12 shadow-[0_14px_24px_rgba(24,40,72,0.38)] hover:shadow-[0_18px_30px_rgba(24,40,72,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden border border-[#32446B]/75 after:absolute after:inset-[1.5px] after:rounded-full after:bg-white/10 after:opacity-0 after:transition-opacity after:duration-300 group-hover:after:opacity-100 ${
+        socialOpen
+          ? "bg-gradient-to-br from-[#223457] via-[#1A2A46] to-[#152135] text-[#F8ECD4] rotate-45"
+          : "bg-gradient-to-br from-[#223457] via-[#1C2E4B] to-[#132039] text-[#F8ECD4] hover:from-[#274064] hover:via-[#1F3554] hover:to-[#16253F]"
+      }`}
           aria-label={t.socialMedia}
         >
           {socialOpen ? (
