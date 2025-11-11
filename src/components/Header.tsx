@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type SVGProps } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Phone,
   ChevronDown,
   Home,
-  Menu,
   X,
   Building2,
   Layers,
@@ -16,6 +15,59 @@ interface HeaderProps {
   language: "tr" | "en";
   onLanguageChange: (lang: "tr" | "en") => void;
 }
+
+const BlossomIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-hidden="true"
+    {...props}
+  >
+    <ellipse cx="12" cy="4.35" rx="2.4" ry="3.25" fill="currentColor" opacity={0.9} />
+    <ellipse cx="12" cy="19.65" rx="2.4" ry="3.25" fill="currentColor" opacity={0.9} />
+    <ellipse cx="19.65" cy="12" rx="3.25" ry="2.4" fill="currentColor" opacity={0.9} />
+    <ellipse cx="4.35" cy="12" rx="3.25" ry="2.4" fill="currentColor" opacity={0.9} />
+    <ellipse
+      cx="17.05"
+      cy="6.95"
+      rx="3"
+      ry="2"
+      fill="currentColor"
+      opacity={0.9}
+      transform="rotate(45 17.05 6.95)"
+    />
+    <ellipse
+      cx="6.95"
+      cy="17.05"
+      rx="3"
+      ry="2"
+      fill="currentColor"
+      opacity={0.9}
+      transform="rotate(45 6.95 17.05)"
+    />
+    <ellipse
+      cx="6.95"
+      cy="6.95"
+      rx="3"
+      ry="2"
+      fill="currentColor"
+      opacity={0.9}
+      transform="rotate(-45 6.95 6.95)"
+    />
+    <ellipse
+      cx="17.05"
+      cy="17.05"
+      rx="3"
+      ry="2"
+      fill="currentColor"
+      opacity={0.9}
+      transform="rotate(-45 17.05 17.05)"
+    />
+    <circle cx="12" cy="12" r="2.8" fill="currentColor" opacity={0.45} />
+  </svg>
+);
 
 const Header = ({ language }: HeaderProps) => {
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
@@ -283,7 +335,11 @@ const Header = ({ language }: HeaderProps) => {
               aria-haspopup="dialog"
               aria-label="Menu"
             >
-              <Menu className="relative w-5 h-5 text-[#F8ECD4] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FFF6DD]" strokeWidth={2.5} />
+              <BlossomIcon
+                className={`relative w-5 h-5 text-[#F8ECD4] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FFF6DD] ${
+                  isMobileMenuOpen ? "scale-110 rotate-45 text-[#FFF6DD]" : ""
+                }`}
+              />
             </button>
           </div>
         </nav>
