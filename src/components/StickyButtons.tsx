@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Building2, X, Share2 } from "lucide-react";
+import { X, Share2 } from "lucide-react";
 
 interface StickyButtonsProps {
   language: "tr" | "en";
@@ -125,7 +125,7 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
       </div>
 
       {/* Sticky Buttons - Sadece Hero bölümünde görünür */}
-      <div className="hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 flex-col gap-2 mr-4 md:mr-6">
+      <div className="hidden md:flex fixed bottom-8 right-8 z-[95] flex-col gap-2 items-end">
         {/* Ana Sosyal Medya Toggle Button */}
         <button
           onClick={() => setSocialOpen(!socialOpen)}
@@ -152,7 +152,7 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
 
         {/* Sosyal Medya Butonları Stack */}
         {socialOpen && (
-          <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right duration-300">
+          <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-top duration-300 items-end">
             {/* Facebook */}
             <a
               href={socialLinks.facebook}
@@ -208,21 +208,6 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
         )}
 
         {/* Satıştaki Projeler Button */}
-        <button
-          onClick={() => {
-            const projectsSection = document.getElementById('satistaki-projeler');
-            if (projectsSection) {
-              projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }}
-          className="group relative bg-[#1e3a5f] hover:bg-[#1a3252] text-white rounded-l-lg px-4 py-6 md:px-5 md:py-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center gap-3 min-w-[60px] md:min-w-[70px]"
-          aria-label={t.projects}
-        >
-          <Building2 className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
-          <span className="writing-vertical text-xs md:text-sm font-semibold whitespace-nowrap">
-            {t.projects}
-          </span>
-        </button>
       </div>
     </>
   );
