@@ -146,6 +146,7 @@ const StickyButtons = ({ language }: StickyButtonsProps) => {
               <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               {/* Shine effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-full"></div>
+              <span className="absolute inset-0 rounded-full border border-white/40 opacity-30 group-hover:opacity-60 transition-opacity duration-500"></span>
             </div>
           )}
         </button>
