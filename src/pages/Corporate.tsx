@@ -63,14 +63,14 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
           {
             icon: Users,
             title: "KONUT",
-            value: "50+",
+            value: "43+",
             unit: "",
             color: "from-green-500 to-green-600",
           },
           {
             icon: Award,
             title: "SOSYAL ALAN",
-            value: "10+",
+            value: "5+",
             unit: "",
             color: "from-orange-500 to-orange-600",
           },
@@ -148,14 +148,14 @@ const Corporate = ({ language, onLanguageChange }: CorporateProps) => {
           {
             icon: Users,
             title: "HOUSING",
-            value: "50+",
+            value: "43+",
             unit: "",
             color: "from-green-500 to-green-600",
           },
           {
             icon: Award,
             title: "SOCIAL AREA",
-            value: "10+",
+            value: "5+",
             unit: "",
             color: "from-orange-500 to-orange-600",
           },

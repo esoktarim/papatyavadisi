@@ -175,7 +175,6 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
         details: {
           genel: [
             { label: "Oda Sayısı", value: "3+1" },
-            { label: "Banyo Sayısı", value: "1 banyo (üst), 1 WC (alt)" },
             { label: "Brüt Alan", value: "110 m²" },
             { label: "Net Alan", value: "97.89 m²" },
             { label: "Arsa Büyüklüğü", value: "407-510 m²" },
@@ -221,14 +220,12 @@ const HouseDetail = ({ language, onLanguageChange }: HouseDetailProps) => {
           land: "407-510 m²",
           age: "New",
           floor: "1 Floor",
-          bathroom: "1 bathroom (upper), 1 WC (lower)",
           parking: "Yes",
         },
         description: "Papatya Vadisi Single-Story Villa in Kadirli gathers modern comfort on one generous level. The wooden paneled facade and expansive terrace blend the home seamlessly with nature. Spacious land parcels and curated landscaping refresh everyday routines. Smartly planned interiors deliver practical solutions for every family member.",
         details: {
           genel: [
             { label: "Room Count", value: "3+1" },
-            { label: "Bathroom Count", value: "1 bathroom (upper), 1 WC (lower)" },
             { label: "Gross Area", value: "110 m²" },
             { label: "Net Area", value: "97.89 m²" },
             { label: "Land Size", value: "407-510 m²" },
